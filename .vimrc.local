@@ -1,0 +1,77 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/syntastic'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-fugitive'
+Plug 'bling/vim-airline'
+Plug 'altercation/vim-colors-solarized'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+
+call plug#end()
+
+nnoremap <C-t> :tabnew<CR>
+map <C-a> :NERDTreeToggle<CR>
+
+set nowrap
+set ci " case insensitive search
+
+" Recommended syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_lua_checkers = ['luacheck']
+let g:syntastic_html_checkers=['']
+if has('gui_running')
+  colorscheme solarized
+  set guifont=Monaco:h15
+endif
+
+" sample easymotion copied from the repo
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+" end sample
+
+" auto-trim whitespace
+autocmd BufWritePre * %s/\s\+$//e
+" command Trim :%s/\s\+$// | w
+" map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
+" space w saves
+map <Leader>w :w<CR>
+map <Leader>x :x<CR>
+
+" copies full file, probably not that useful
+map <Leader>c :%w !pbcopy<CR><CR>
+" ctrl c copies to system keyboard
+vnoremap <C-c> "*y
+" paste first clipboard item
+map <Leader>v :r !pbpaste<CR>
+" toggle paste mode, so indentation works when pasting from insert mode
+set pastetoggle=<C-o>
