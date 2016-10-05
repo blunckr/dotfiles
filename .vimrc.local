@@ -16,8 +16,12 @@ Plug 'mattn/emmet-vim'
 
 call plug#end()
 
-nnoremap <C-t> :tabnew<CR>
+nmap <Leader>t :enew<CR>
+nmap <C-l> :bnext<CR>
+nmap <C-h> :bprevious<CR>
 map <C-a> :NERDTreeToggle<CR>
+nmap <Leader>q :bp <BAR> bd #<CR>
+map <C-o> :CtrlPBuffer<CR>
 
 set nowrap
 set ci " case insensitive search
@@ -36,6 +40,9 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_lua_checkers = ['luacheck']
 let g:syntastic_html_checkers=['']
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
 
 set background=light
 colorscheme solarized
@@ -68,7 +75,6 @@ autocmd BufWritePre * %s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 " space w saves
 map <Leader>w :w<CR>
-map <Leader>x :x<CR>
 
 " copies full file, probably not that useful
 map <Leader>c :%w !pbcopy<CR><CR>
@@ -77,7 +83,7 @@ vnoremap <C-c> "*y
 " paste first clipboard item
 map <Leader>v :r !pbpaste<CR>
 " toggle paste mode, so indentation works when pasting from insert mode
-set pastetoggle=<C-o>
+set pastetoggle=<C-i>
 " for scrolling up and down quickly
 nnoremap J 7j
 nnoremap K 7k
