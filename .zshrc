@@ -86,5 +86,6 @@ alias love="/Applications/love.app/Contents/MacOS/love"
 
 export EDITOR="/usr/local/bin/vim"
 nvm use default > /dev/null
+ssh-add ~/.ssh/id_rsa &> /dev/null
 export PATH="/usr/local/sbin:$PATH"
 eval "$(rbenv init -)"

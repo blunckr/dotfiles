@@ -12,6 +12,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -35,8 +36,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_lua_checkers = ['luacheck']
 let g:syntastic_html_checkers=['']
+
+set background=light
+colorscheme solarized
 if has('gui_running')
-  colorscheme solarized
   set guifont=Monaco:h15
 endif
 
@@ -75,3 +78,8 @@ vnoremap <C-c> "*y
 map <Leader>v :r !pbpaste<CR>
 " toggle paste mode, so indentation works when pasting from insert mode
 set pastetoggle=<C-o>
+" for scrolling up and down quickly
+nnoremap J 7j
+nnoremap K 7k
+vnoremap J 7j
+vnoremap K 7k
