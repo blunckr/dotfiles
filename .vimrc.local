@@ -14,17 +14,15 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
-Plug 'majutsushi/tagbar'
 
 call plug#end()
 
 nmap <Leader>t :enew<CR>
-nmap <C-l> :bnext<CR>
 nmap <C-h> :bprevious<CR>
+nmap <C-l> :bnext<CR>
 map <C-a> :NERDTreeToggle<CR>
 nmap <Leader>q :bp <BAR> bd #<CR>
 map <C-o> :CtrlPBuffer<CR>
-nmap <C-t> :TagbarToggle<CR>
 
 set nowrap
 set ci " case insensitive search
