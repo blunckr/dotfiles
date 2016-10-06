@@ -8,11 +8,13 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
 
@@ -22,6 +24,7 @@ nmap <C-h> :bprevious<CR>
 map <C-a> :NERDTreeToggle<CR>
 nmap <Leader>q :bp <BAR> bd #<CR>
 map <C-o> :CtrlPBuffer<CR>
+nmap <C-t> :TagbarToggle<CR>
 
 set nowrap
 set ci " case insensitive search
@@ -43,11 +46,13 @@ let g:syntastic_html_checkers=['']
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'bubblegum'
 
 set background=light
 colorscheme solarized
 if has('gui_running')
-  set guifont=Monaco:h15
+  set guifont=Droid\ Sans\ Mono\ for\ Powerline:h16
 endif
 
 " sample easymotion copied from the repo
