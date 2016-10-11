@@ -49,7 +49,7 @@ ZSH_THEME="jonathan"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails brew)
+plugins=(git rails brew gem npm osx)
 
 # User configuration
 
@@ -89,3 +89,4 @@ nvm use default > /dev/null
 ssh-add ~/.ssh/id_rsa &> /dev/null
 export PATH="/usr/local/sbin:$PATH"
 eval "$(rbenv init -)"
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
