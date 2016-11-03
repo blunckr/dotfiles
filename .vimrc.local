@@ -14,19 +14,20 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
+Plug 'elixir-lang/vim-elixir'
 
 call plug#end()
 
 nmap <Leader>t :enew<CR>
 nmap <Leader>h :bprevious<CR>
 nmap <Leader>l :bnext<CR>
-map <C-a> :NERDTreeToggle<CR>
+map <Leader>a :NERDTreeToggle<CR>
 nmap <Leader>q :bp <BAR> bd #<CR>
 map <C-o> :CtrlPBuffer<CR>
 
-set nowrap
 set ci " case insensitive search
 set hidden
+set hlsearch
 
 " Recommended syntastic settings
 set statusline+=%#warningmsg#
@@ -41,6 +42,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_lua_checkers = ['luacheck']
+let g:syntastic_scss_scss_checkers = ['scss_lint']
 let g:syntastic_html_checkers=['']
 
 " Enable the list of buffers
@@ -86,10 +88,10 @@ map <Leader>c :%w !pbcopy<CR><CR>
 vnoremap <C-c> "*y
 " paste first clipboard item
 map <Leader>v :r !pbpaste<CR>
-" toggle paste mode, so indentation works when pasting from insert mode
-set pastetoggle=<C-i>
 " for scrolling up and down quickly
 nnoremap J 7j
 nnoremap K 7k
 vnoremap J 7j
 vnoremap K 7k
+
+abbr jlog console.log
