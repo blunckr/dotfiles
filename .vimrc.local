@@ -21,9 +21,9 @@ call plug#end()
 nmap <Leader>t :enew<CR>
 nmap <Leader>h :bprevious<CR>
 nmap <Leader>l :bnext<CR>
-map <Leader>a :NERDTreeToggle<CR>
 nmap <Leader>q :bp <BAR> bd #<CR>
 map <C-o> :CtrlPBuffer<CR>
+map <Leader>s :noh<CR>
 
 set ci " case insensitive search
 set hidden
@@ -34,8 +34,12 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
+map <Leader>a :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height=1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -95,3 +99,4 @@ vnoremap J 7j
 vnoremap K 7k
 
 abbr jlog console.log
+abbr ass assessment
