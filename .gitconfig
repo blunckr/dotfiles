@@ -1,0 +1,16 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+name = Ryker Blunck
+email = rykerblunck@gmail.com
+[push]
+	default = matching
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[alias]
+	please = push --force-with-lease
+	staash = stash --include-untracked
+	st = status --short --branch
+	up = pull --rebase
