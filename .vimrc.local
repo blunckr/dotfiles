@@ -15,6 +15,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'elixir-lang/vim-elixir'
+Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
 
@@ -24,6 +25,8 @@ nmap <Leader>l :bnext<CR>
 nmap <Leader>q :bp <BAR> bd #<CR>
 map <C-o> :CtrlPBuffer<CR>
 map <Leader>s :noh<CR>
+map <Leader>- :sp<CR>
+map <Leader>\| :vsp<CR>
 
 set ci " case insensitive search
 set hidden
@@ -49,15 +52,17 @@ let g:syntastic_lua_checkers = ['luacheck']
 let g:syntastic_scss_scss_checkers = ['scss_lint']
 let g:syntastic_html_checkers=['']
 
+let g:NERDSpaceDelims = 1
+
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
 
 set background=light
 colorscheme solarized
 if has('gui_running')
-  set guifont=Droid\ Sans\ Mono\ for\ Powerline:h16
+  set guifont=Monaco:h16
 endif
 
 " sample easymotion copied from the repo
@@ -86,8 +91,6 @@ autocmd BufWritePre * %s/\s\+$//e
 " space w saves
 map <Leader>w :w<CR>
 
-" copies full file, probably not that useful
-map <Leader>c :%w !pbcopy<CR><CR>
 " ctrl c copies to system keyboard
 vnoremap <C-c> "*y
 " paste first clipboard item
