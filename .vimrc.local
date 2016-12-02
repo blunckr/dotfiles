@@ -30,13 +30,14 @@ nnoremap <C-l> :bnext<CR>
 nmap <Leader>t :enew<CR>
 nmap <Leader>q :bp <BAR> bd #<CR>
 map <C-o> :CtrlPBuffer<CR>
-map <Leader>s :noh<CR>
+" map <Leader>s :noh<CR>
 map <Leader>- :sp<CR>
 map <Leader>\| :vsp<CR>
 " space w saves
-map <Leader>w :w<CR>
+" map <Leader>w :w<CR>
 
-set ci " case insensitive search
+set ignorecase " case insensitive search
+set smartcase
 set hidden
 set hlsearch
 
