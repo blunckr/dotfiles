@@ -2,7 +2,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -28,7 +27,6 @@ nnoremap <Leader>l <C-w>l
 nnoremap <C-h> :bprevious<CR>
 nnoremap <C-l> :bnext<CR>
 nmap <Leader>t :enew<CR>
-nmap <Leader>q :bp <BAR> bd #<CR>
 map <C-o> :CtrlPBuffer<CR>
 " map <Leader>s :noh<CR>
 map <Leader>- :sp<CR>
@@ -40,6 +38,10 @@ set ignorecase " case insensitive search
 set smartcase
 set hidden
 set hlsearch
+set rnu
+set numberwidth=1
+" prevent auto hard wraps
+set fo-=t
 
 " Recommended syntastic settings
 set statusline+=%#warningmsg#
@@ -69,30 +71,11 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
 
-set background=light
+set background=dark
 colorscheme solarized
 if has('gui_running')
   set guifont=Monaco:h16
 endif
-
-" sample easymotion copied from the repo
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-nmap s <Plug>(easymotion-overwin-f)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-overwin-f2)
-
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-map <C-j> <Plug>(easymotion-j)
-map <C-k> <Plug>(easymotion-k)
-" end sample
 
 " auto-trim whitespace
 autocmd BufWritePre * %s/\s\+$//e

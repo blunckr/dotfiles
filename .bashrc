@@ -4,6 +4,7 @@ export NVM_DIR="$HOME/.nvm"
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias g="/usr/bin/git"
 alias v="/usr/local/bin/vim"
+alias l="ls -lahG"
 export EDITOR="/usr/local/bin/vim"
 nvm use default > /dev/null
 ssh-add ~/.ssh/id_rsa &> /dev/null
