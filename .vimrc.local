@@ -19,14 +19,14 @@ Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
 " Quicker window movement
-nnoremap <Leader>j <C-w>j
-nnoremap <Leader>k <C-w>k
-nnoremap <Leader>h <C-w>h
-nnoremap <Leader>l <C-w>l
+" nnoremap <Leader>j <C-w>j
+" nnoremap <Leader>k <C-w>k
+" nnoremap <Leader>h <C-w>h
+" nnoremap <Leader>l <C-w>l
 
-nnoremap <C-h> :bprevious<CR>
-nnoremap <C-l> :bnext<CR>
-nmap <Leader>t :enew<CR>
+" nnoremap <C-h> :bprevious<CR>
+" nnoremap <C-l> :bnext<CR>
+" nmap <Leader>t :enew<CR>
 map <C-o> :CtrlPBuffer<CR>
 " map <Leader>s :noh<CR>
 map <Leader>- :sp<CR>
@@ -40,6 +40,10 @@ set hidden
 set hlsearch
 set rnu
 set numberwidth=1
+set wildmenu
+set wildignore+=**/node_modules/**
+set wildignore+=**/tmp/**
+set wildignore+=**/bower_components/**
 " prevent auto hard wraps
 set fo-=t
 
@@ -52,8 +56,8 @@ map <Leader>a :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height=1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_loc_list_height=1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -71,7 +75,7 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
 
-set background=dark
+set background=light
 colorscheme solarized
 if has('gui_running')
   set guifont=Monaco:h16

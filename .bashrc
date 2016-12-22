@@ -1,5 +1,6 @@
 export PATH="/usr/local/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
+export GREP_OPTIONS="--color=auto"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias g="/usr/bin/git"

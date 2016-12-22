@@ -14,3 +14,4 @@ email = rykerblunck@gmail.com
 	staash = stash --include-untracked
 	st = status --short --branch
 	up = pull --rebase
+  co = checkout
