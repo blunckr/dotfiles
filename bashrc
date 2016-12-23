@@ -1,15 +1,15 @@
-export PATH="/usr/local/bin:$PATH"
+# export PATH="/usr/local/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
-export GREP_OPTIONS="--color=auto"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+. "/usr/local/opt/nvm/nvm.sh"
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias g="/usr/bin/git"
 alias v="/usr/local/bin/vim"
 alias l="ls -lahG"
 export EDITOR="/usr/local/bin/vim"
-nvm use default > /dev/null
+export GREP_OPTIONS="--color=auto"
+# nvm use default > /dev/null
 ssh-add ~/.ssh/id_rsa &> /dev/null
-export PATH="/usr/local/sbin:$PATH"
+# export PATH="/usr/local/sbin:$PATH"
 eval "$(rbenv init -)"
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
