@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'pangloss/vim-javascript'

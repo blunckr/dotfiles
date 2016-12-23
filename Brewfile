@@ -1,0 +1,20 @@
+tap 'homebrew/bundle'
+tap 'homebrew/core'
+tap 'caskroom/cask'
+cask 'iterm2'
+cask 'google-chrome'
+cask 'flux'
+cask 'alfred'
+cask 'flycut'
+cask 'dropbox'
+cask 'virtualbox'
+cask 'vagrant'
+brew 'vim'
+brew 'wget'
+brew 'rbenv'
+brew 'nvm'
+
+#
+
+cask 'steam'
+cask 'openemu'
