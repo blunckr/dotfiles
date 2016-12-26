@@ -9,7 +9,7 @@ export EDITOR="/usr/local/bin/vim"
 export GREP_OPTIONS="--color=auto"
 # nvm use default > /dev/null
 ssh-add ~/.ssh/id_rsa &> /dev/null
-# export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 eval "$(rbenv init -)"
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
