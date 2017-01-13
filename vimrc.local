@@ -15,6 +15,7 @@ Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
