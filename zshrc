@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/blunckr/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -96,7 +96,10 @@ export GREP_OPTIONS="--color=auto"
 # nvm use default > /dev/null
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 export PATH="/usr/local/sbin:$PATH"
-eval "$(rbenv init -)"
+if [ -d "$HOME/.rbenv" ]
+then
+  eval "$(rbenv init -)"
+fi
 # if [ -f $(brew --prefix)/etc/bash_completion ]; then
   # . $(brew --prefix)/etc/bash_completion
 # fi
