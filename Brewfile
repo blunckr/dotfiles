@@ -17,6 +17,7 @@ cask 'atom'
 cask 'dash'
 brew 'git'
 brew 'vim'
+cask 'macvim'
 cask 'rowanj-gitx'
 brew 'shellcheck'
 brew 'wget'
@@ -32,6 +33,7 @@ brew 'weechat'
 
 #
 
+cask 'spotify'
 cask 'steam'
 cask 'openemu'
 cask 'musicbrainz-picard'

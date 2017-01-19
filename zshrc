@@ -51,7 +51,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vagrant)
+plugins=(git vagrant vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,9 +87,7 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 alias love="/Applications/love.app/Contents/MacOS/love"
-# alias g="/usr/bin/git"
-# alias v="/usr/local/bin/vim"
-# alias l="ls -lahG"
+alias v="/usr/local/bin/vim"
 export EDITOR="/usr/local/bin/vim"
 export GREP_OPTIONS="--color=auto"
 # nvm use default > /dev/null

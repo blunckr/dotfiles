@@ -1,6 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-" Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'pangloss/vim-javascript'
@@ -16,6 +15,7 @@ Plug 'mattn/emmet-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'jceb/vim-orgmode'
 
 call plug#end()
 
@@ -29,6 +29,7 @@ call plug#end()
 " nnoremap <C-l> :bnext<CR>
 " nmap <Leader>t :enew<CR>
 map <C-o> :CtrlPBuffer<CR>
+let g:ctrlp_working_path_mode = ''
 " map <Leader>s :noh<CR>
 map <Leader>- :sp<CR>
 map <Leader>\| :vsp<CR>
@@ -94,4 +95,5 @@ vnoremap J 7j
 vnoremap K 7k
 
 abbr jlog console.log
-abbr ass assessment
+autocmd FileType sh setlocal shiftwidth=4 tabstop=4
+
