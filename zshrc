@@ -84,14 +84,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # export PATH="/usr/local/bin:$PATH"
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+if [ -d "$HOME/.nvm" ]
+then
+  export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
+fi
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias v="/usr/local/bin/vim"
 export EDITOR="/usr/local/bin/vim"
 export GREP_OPTIONS="--color=auto"
 # nvm use default > /dev/null
-ssh-add ~/.ssh/id_rsa &> /dev/null
+ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 export PATH="/usr/local/sbin:$PATH"
 eval "$(rbenv init -)"
 # if [ -f $(brew --prefix)/etc/bash_completion ]; then
