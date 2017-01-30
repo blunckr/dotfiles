@@ -16,6 +16,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'jceb/vim-orgmode'
+Plug 'kchmck/vim-coffee-script'
 
 call plug#end()
 

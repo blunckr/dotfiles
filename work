@@ -1,0 +1,13 @@
+#!/bin/bash
+apps=(
+  "Google Chrome"
+  "Mail"
+  "Messages"
+  "Slack"
+  "iTerm"
+)
+
+for app in "${apps[@])}"
+do
+  open -a "$app"
+done
