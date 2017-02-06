@@ -17,6 +17,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'jceb/vim-orgmode'
 Plug 'kchmck/vim-coffee-script'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -41,12 +42,13 @@ set ignorecase " case insensitive search
 set smartcase
 set hidden
 set hlsearch
-set rnu
+" set rnu
 set numberwidth=1
 set wildmenu
 set wildignore+=**/node_modules/**
 set wildignore+=**/tmp/**
 set wildignore+=**/bower_components/**
+set path+=** " poor mans fuzzy find
 " prevent auto hard wraps
 set fo-=t
 
@@ -55,7 +57,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-map <Leader>a :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
 let g:syntastic_always_populate_loc_list = 1
@@ -76,7 +77,9 @@ let g:NERDSpaceDelims = 1
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " let g:airline_powerline_fonts = 1
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'ubaryd'
+let g:airline_section_y = ''
+let g:airline_skip_empty_sections=1
 
 set background=light
 colorscheme solarized
@@ -88,12 +91,6 @@ endif
 autocmd BufWritePre * %s/\s\+$//e
 " command Trim :%s/\s\+$// | w
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
-
-" for scrolling up and down quickly
-nnoremap J 7j
-nnoremap K 7k
-vnoremap J 7j
-vnoremap K 7k
 
 abbr jlog console.log
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4
