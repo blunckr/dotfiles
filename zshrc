@@ -91,13 +91,14 @@ then
 fi
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias v="/usr/local/bin/vim"
-export EDITOR="/usr/local/bin/vim"
-export GREP_OPTIONS="--color=auto"
+alias tmux="TERM=screen-256color-bce tmux"
+# export EDITOR="/usr/local/bin/vim"
 # nvm use default > /dev/null
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 export PATH="/usr/local/sbin:$PATH"
 if [ -d "$HOME/.rbenv" ]
 then
+  export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
 # if [ -f $(brew --prefix)/etc/bash_completion ]; then

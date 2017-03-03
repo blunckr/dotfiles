@@ -13,8 +13,7 @@ unbind %
 bind r source-file ~/.tmux.conf
 
 # Enable mouse mode (tmux 2.1 and above)
-# set -g mouse on
-
-# don't rename windows automatically
+set -g mouse on
+#
+bind -t vi-copy y copy-pipe "xclip -sel clip -i"
 set-option -g allow-rename off
-# set-option -g default-command "reattach-to-user-namespace -l zsh"
