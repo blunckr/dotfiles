@@ -8,7 +8,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
@@ -17,7 +16,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'jceb/vim-orgmode'
 Plug 'kchmck/vim-coffee-script'
-Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -85,6 +83,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 set t_Co=256
 set background=dark
 colorscheme solarized
+set modeline
 
 if has('gui_running')
   set background=light
