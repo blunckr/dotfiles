@@ -89,7 +89,6 @@ then
   export NVM_DIR="$HOME/.nvm"
   . "/usr/local/opt/nvm/nvm.sh"
 fi
-alias love="/Applications/love.app/Contents/MacOS/love"
 alias v="/usr/local/bin/vim"
 alias tmux="TERM=screen-256color-bce tmux"
 # export EDITOR="/usr/local/bin/vim"
