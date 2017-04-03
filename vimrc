@@ -18,10 +18,6 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
-
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
@@ -62,23 +58,6 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-
-  if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
-  endif
-endif
-
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
@@ -104,12 +83,6 @@ inoremap <S-Tab> <c-n>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
-
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
 
 " vim-test mappings
 nnoremap <silent> <Leader>t :TestFile<CR>
@@ -140,20 +113,12 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {"regex": "possibly useless use of a variable in void context"}
 
-" Set spellfile to location that is guaranteed to exist, can be symlinked to
-" Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-set spellfile=$HOME/.vim-spell-en.utf-8.add
-
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
 
 " Always use vertical diffs
 set diffopt+=vertical
 
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
-endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
@@ -174,12 +139,6 @@ Plug 'jceb/vim-orgmode'
 Plug 'kchmck/vim-coffee-script'
 
 call plug#end()
-
-" Quicker window movement
-" nnoremap <Leader>j <C-w>j
-" nnoremap <Leader>k <C-w>k
-" nnoremap <Leader>h <C-w>h
-" nnoremap <Leader>l <C-w>l
 
 " nnoremap <C-h> :bprevious<CR>
 " nnoremap <C-l> :bnext<CR>
@@ -238,7 +197,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 set t_Co=256
 set background=dark
-colorscheme solarized
 set modeline
 
 if has('gui_running')
@@ -249,6 +207,11 @@ endif
 if has('gui_macvim')
   set guifont=Monaco:h16
 endif
+let s:uname = system("echo -n \"$(uname)\"")
+if s:uname == "Darwin"
+  set background=light
+endif
+colorscheme solarized
 
 " auto-trim whitespace
 autocmd BufWritePre * %s/\s\+$//e
