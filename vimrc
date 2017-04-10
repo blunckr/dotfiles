@@ -1,3 +1,22 @@
+call plug#begin('~/.vim/plugged')
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/syntastic'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-fugitive'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'mattn/emmet-vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'jceb/vim-orgmode'
+Plug 'kchmck/vim-coffee-script'
+call plug#end()
+
 " Leader
 let mapleader = " "
 
@@ -11,16 +30,12 @@ set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
+set modeline
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
-endif
-
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
 endif
 
 filetype plugin indent on
@@ -84,16 +99,6 @@ inoremap <S-Tab> <c-n>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" vim-test mappings
-nnoremap <silent> <Leader>t :TestFile<CR>
-nnoremap <silent> <Leader>s :TestNearest<CR>
-nnoremap <silent> <Leader>l :TestLast<CR>
-nnoremap <silent> <Leader>a :TestSuite<CR>
-nnoremap <silent> <leader>gt :TestVisit<CR>
-
-" Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
-
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
@@ -101,44 +106,11 @@ let g:html_indent_tags = 'li\|p'
 set splitbelow
 set splitright
 
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
-" configure syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open=1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_eruby_ruby_quiet_messages =
-    \ {"regex": "possibly useless use of a variable in void context"}
-
 " Autocomplete with dictionary words when spell check is on
 set complete+=kspell
 
 " Always use vertical diffs
 set diffopt+=vertical
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/syntastic'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'tpope/vim-fugitive'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-surround'
-Plug 'mattn/emmet-vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'jceb/vim-orgmode'
-Plug 'kchmck/vim-coffee-script'
-
-call plug#end()
 
 " nnoremap <C-h> :bprevious<CR>
 " nnoremap <C-l> :bnext<CR>
@@ -175,8 +147,11 @@ let NERDTreeShowHidden=1
 let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_loc_list_height=1
-let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open=1
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_eruby_ruby_quiet_messages =
+    \ {"regex": "possibly useless use of a variable in void context"}
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['rubocop']
@@ -196,12 +171,9 @@ let g:airline_skip_empty_sections=1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 set t_Co=256
-set background=dark
-set modeline
+set background=light
 
 if has('gui_running')
-  set background=light
-  colorscheme solarized
   set guifont=Monospace\ 14
 endif
 if has('gui_macvim')
@@ -209,7 +181,6 @@ if has('gui_macvim')
 endif
 let s:uname = system("echo -n \"$(uname)\"")
 if s:uname == "Darwin"
-  set background=light
 endif
 colorscheme solarized
 
