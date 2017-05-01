@@ -13,7 +13,7 @@ Plug 'mattn/emmet-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'jceb/vim-orgmode'
+" Plug 'jceb/vim-orgmode'
 Plug 'kchmck/vim-coffee-script'
 call plug#end()
 
@@ -133,6 +133,8 @@ set wildmenu
 set wildignore+=**/node_modules/**
 set wildignore+=**/tmp/**
 set wildignore+=**/bower_components/**
+set wildignore+=**/priv/**
+set wildignore+=**/deps/**
 set path+=** " poor mans fuzzy find
 " prevent auto hard wraps
 set fo-=t
@@ -159,36 +161,41 @@ let g:syntastic_lua_checkers = ['luacheck']
 let g:syntastic_scss_scss_checkers = ['scss_lint']
 let g:syntastic_html_checkers=['']
 let g:syntastic_bash_checkers=['shellcheck']
+let g:syntastic_sh_checkers=['shellcheck']
 
 let g:NERDSpaceDelims = 1
 
 " Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" number buffers
+let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:airline_powerline_fonts = 1
 let g:airline_theme = 'ubaryd'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
-let g:airline#extensions#tabline#buffer_nr_show = 1
 
 set t_Co=256
 set background=light
+colorscheme solarized
 
 if has('gui_running')
   set guifont=Monospace\ 14
 endif
 if has('gui_macvim')
   set guifont=Monaco:h16
+  " Don't show pop-ups when files change etc.
+  set guioptions+=c
 endif
 let s:uname = system("echo -n \"$(uname)\"")
 if s:uname == "Darwin"
 endif
-colorscheme solarized
 
 " auto-trim whitespace
-autocmd BufWritePre * %s/\s\+$//e
+" autocmd BufWritePre * %s/\s\+$//e
 " command Trim :%s/\s\+$// | w
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 
 abbr jlog console.log
+" 4 spaces for shell scripts
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4
 

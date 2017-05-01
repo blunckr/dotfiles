@@ -94,7 +94,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 # export EDITOR="/usr/local/bin/vim"
 # nvm use default > /dev/null
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 if [ -d "$HOME/.rbenv" ]
 then
   export PATH="$HOME/.rbenv/bin:$PATH"
