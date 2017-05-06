@@ -90,7 +90,7 @@ then
   . "/usr/local/opt/nvm/nvm.sh"
 fi
 alias v="/usr/local/bin/vim"
-alias tmux="TERM=screen-256color-bce tmux"
+alias pg="postgres -D /usr/local/var/postgres/"
 # export EDITOR="/usr/local/bin/vim"
 # nvm use default > /dev/null
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
