@@ -30,6 +30,7 @@ brew 'tmux'
 brew 'reattach-to-user-namespace'
 # brew 'rsync'
 brew 'weechat'
+brew 'jq'
 
 #
 

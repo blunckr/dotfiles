@@ -12,9 +12,8 @@ Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-" Plug 'jceb/vim-orgmode'
-Plug 'kchmck/vim-coffee-script'
+" Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 " Leader
@@ -97,7 +96,7 @@ inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
 
 " Switch between the last two files
-nnoremap <leader><leader> <c-^>
+" nnoremap <leader><leader> <c-^>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -112,16 +111,10 @@ set complete+=kspell
 " Always use vertical diffs
 set diffopt+=vertical
 
-" nnoremap <C-h> :bprevious<CR>
-" nnoremap <C-l> :bnext<CR>
-" nmap <Leader>t :enew<CR>
 map <C-o> :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = ''
-" map <Leader>s :noh<CR>
 map <Leader>- :sp<CR>
 map <Leader>\| :vsp<CR>
-" space w saves
-" map <Leader>w :w<CR>
 
 set ignorecase " case insensitive search
 set smartcase
@@ -135,6 +128,7 @@ set wildignore+=**/tmp/**
 set wildignore+=**/bower_components/**
 set wildignore+=**/priv/**
 set wildignore+=**/deps/**
+set wildignore+=**/_build/**
 set path+=** " poor mans fuzzy find
 " prevent auto hard wraps
 set fo-=t
@@ -151,17 +145,15 @@ let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_loc_list_height=1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_open=1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_eruby_ruby_quiet_messages =
-    \ {"regex": "possibly useless use of a variable in void context"}
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_lua_checkers = ['luacheck']
 let g:syntastic_scss_scss_checkers = ['scss_lint']
-let g:syntastic_html_checkers=['']
 let g:syntastic_bash_checkers=['shellcheck']
 let g:syntastic_sh_checkers=['shellcheck']
+" let g:syntastic_elixir_checkers=['elixir']
+" let g:syntastic_enable_elixir_checker = 1
 
 let g:NERDSpaceDelims = 1
 
@@ -173,6 +165,11 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme = 'ubaryd'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
+
+" easymotion
+let g:EasyMotion_smartcase = 1
+" two character searches
+nmap <Leader>s <Plug>(easymotion-s2)
 
 set t_Co=256
 set background=light
