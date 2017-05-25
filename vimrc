@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-fugitive'
@@ -134,26 +135,32 @@ set path+=** " poor mans fuzzy find
 set fo-=t
 
 " Recommended syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let NERDTreeShowHidden=1
 
-let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_loc_list_height=1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_open=1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_open=1
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_lua_checkers = ['luacheck']
-let g:syntastic_scss_scss_checkers = ['scss_lint']
-let g:syntastic_bash_checkers=['shellcheck']
-let g:syntastic_sh_checkers=['shellcheck']
-" let g:syntastic_elixir_checkers=['elixir']
-" let g:syntastic_enable_elixir_checker = 1
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_ruby_checkers = ['rubocop']
+" let g:syntastic_lua_checkers = ['luacheck']
+" let g:syntastic_scss_scss_checkers = ['scss_lint']
+" let g:syntastic_bash_checkers=['shellcheck']
+" let g:syntastic_sh_checkers=['shellcheck']
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_lua_enabled_makers = ['luacheck']
+let g:neomake_scss_scss_enabled_makers = ['scss_lint']
+let g:neomake_bash_enabled_makers=['shellcheck']
+let g:neomake_sh_enabled_makers=['shellcheck']
+let g:neomake_elixir_enabled_makers = ['credo']
+autocmd! BufWritePost,BufEnter * Neomake
 
 let g:NERDSpaceDelims = 1
 
@@ -189,7 +196,7 @@ endif
 
 " auto-trim whitespace
 " autocmd BufWritePre * %s/\s\+$//e
-" command Trim :%s/\s\+$// | w
+command Trim :%s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 
 abbr jlog console.log
