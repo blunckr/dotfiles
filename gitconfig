@@ -13,7 +13,7 @@ email = rykerblunck@gmail.com
 	please = push --force-with-lease
 	staash = stash --include-untracked
 	st = status --short --branch
-	up = pull --rebase
+	up = pull --rebase --prune
 	co = checkout
 [core]
 	editor = /usr/local/bin/vim

@@ -7,7 +7,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="miloshadzic"
+ZSH_THEME="af-magic"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -84,21 +84,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # export PATH="/usr/local/bin:$PATH"
-if [ -d "$HOME/.nvm" ]
-then
-  export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
-fi
 alias v="/usr/local/bin/vim"
 alias pg="postgres -D /usr/local/var/postgres/"
 # export EDITOR="/usr/local/bin/vim"
 # nvm use default > /dev/null
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
-if [ -d "$HOME/.rbenv" ]
+
+if [ -d "$HOME/.asdf" ]
 then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
+  . "$HOME/.asdf/asdf.sh"
+  . "$HOME/.asdf/completions/asdf.bash"
 fi
 # if [ -f $(brew --prefix)/etc/bash_completion ]; then
   # . $(brew --prefix)/etc/bash_completion

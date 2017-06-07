@@ -2,8 +2,11 @@
 cd "$HOME/code/catalyst" || exit
 tmux new -d -s catalyst
 
+tmux send-keys "pg" C-m
+tmux rename-window "pg"
+
+tmux new-window -n "elastic"
 tmux send-keys "elasticsearch" C-m
-tmux rename-window "elastic"
 
 tmux new-window -n "elixir"
 tmux send-keys "IEx -S mix phoenix.server" C-m
