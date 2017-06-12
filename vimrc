@@ -12,7 +12,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'scrooloose/nerdcommenter'
-" Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 call plug#end()
 
@@ -126,7 +126,6 @@ set wildmenu
 set wildignore+=**/node_modules/**
 set wildignore+=**/tmp/**
 set wildignore+=**/bower_components/**
-set wildignore+=**/priv/**
 set wildignore+=**/deps/**
 set wildignore+=**/_build/**
 set path+=** " poor mans fuzzy find
