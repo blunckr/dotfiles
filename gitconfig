@@ -16,4 +16,4 @@ email = rykerblunck@gmail.com
 	up = pull --rebase --prune
 	co = checkout
 [core]
-	editor = /usr/local/bin/vim
+	editor = /usr/bin/vim

@@ -90,6 +90,7 @@ alias pg="postgres -D /usr/local/var/postgres/"
 # nvm use default > /dev/null
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+export LC_ALL=en_US.UTF-8
 
 if [ -d "$HOME/.asdf" ]
 then
