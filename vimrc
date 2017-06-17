@@ -165,11 +165,11 @@ autocmd! BufWritePost,BufEnter * Neomake
 let g:NERDSpaceDelims = 1
 
 " Enable the list of buffers
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 " number buffers
 let g:airline#extensions#tabline#buffer_nr_show = 1
-" let g:airline_powerline_fonts = 1
-let g:airline_theme = 'ubaryd'
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'base16'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
 
@@ -179,7 +179,7 @@ let g:EasyMotion_smartcase = 1
 nmap <Leader>s <Plug>(easymotion-s2)
 
 set t_Co=256
-set background=light
+set background=dark
 colorscheme solarized
 
 if has('gui_running')
@@ -196,7 +196,7 @@ endif
 
 " auto-trim whitespace
 " autocmd BufWritePre * %s/\s\+$//e
-command Trim :%s/\s\+$//e
+command! Trim :%s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 
 abbr jlog console.log
