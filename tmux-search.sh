@@ -2,7 +2,7 @@
 cd "$HOME/code/catalyst" || exit
 tmux new -d -s catalyst
 
-tmux send-keys "pg" C-m
+tmux send-keys "postgres" C-m
 tmux rename-window "pg"
 
 tmux new-window -n "elastic"
