@@ -186,7 +186,7 @@ if has('gui_running')
   set guifont=Monospace\ 14
 endif
 if has('gui_macvim')
-  set guifont=Monaco:h16
+  set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h16
   " Don't show pop-ups when files change etc.
   set guioptions+=c
 endif
