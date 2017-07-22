@@ -109,3 +109,4 @@ fi
   # git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
 # }
 # export PS1="\[\e[34m\]\w\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\n>> "
+eval "$(thefuck --alias doh)"

@@ -8,7 +8,7 @@ Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
+Plug 'dracula/vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'elixir-lang/vim-elixir'
@@ -113,7 +113,7 @@ set complete+=kspell
 " Always use vertical diffs
 set diffopt+=vertical
 
-map <C-o> :CtrlPBuffer<CR>
+map <Leader>p :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = ''
 map <Leader>- :sp<CR>
 map <Leader>\| :vsp<CR>
@@ -169,7 +169,7 @@ let g:airline#extensions#tabline#enabled = 1
 " number buffers
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'base16'
+let g:airline_theme = 'simple'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
 
@@ -179,8 +179,8 @@ let g:EasyMotion_smartcase = 1
 nmap <Leader>s <Plug>(easymotion-s2)
 
 set t_Co=256
-set background=dark
-colorscheme solarized
+" set background=dark
+color dracula
 
 if has('gui_running')
   set guifont=Monospace\ 14
