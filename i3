@@ -9,6 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+exec xrandr --dpi 192
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -31,14 +32,14 @@ font pango:Meslo LG S for Powerline Regular 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -l 20 -fn "Meslo LG S for Powerline Regular-15"
-bindsym $mod+v exec clipmenu -l 20 -fn "Meslo LG S for Powerline Regular-15"
+bindsym $mod+v exec /opt/clipmenu/clipmenu -l 20 -fn "Meslo LG S for Powerline Regular-15"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.

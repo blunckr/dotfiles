@@ -1,4 +1,6 @@
 # If you come from bash you might have to change your $PATH.
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -51,7 +53,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vagrant vi-mode)
+plugins=(git vagrant vi-mode asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,4 +111,6 @@ fi
   # git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
 # }
 # export PS1="\[\e[34m\]\w\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\n>> "
-eval "$(thefuck --alias doh)"
+if hash thefuck 2>/dev/null; then
+  eval "$(thefuck --alias doh)"
+fi
