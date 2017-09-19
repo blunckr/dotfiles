@@ -1,7 +1,8 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
-Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'scrooloose/syntastic'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'mileszs/ack.vim'
 Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -97,26 +98,12 @@ endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
 
-" Switch between the last two files
-" nnoremap <leader><leader> <c-^>
-
-" Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
-
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
 
-" Autocomplete with dictionary words when spell check is on
-set complete+=kspell
-
 " Always use vertical diffs
 set diffopt+=vertical
-
-map <Leader>p :CtrlPBuffer<CR>
-let g:ctrlp_working_path_mode = ''
-map <Leader>- :sp<CR>
-map <Leader>\| :vsp<CR>
 
 set ignorecase " case insensitive search
 set smartcase
@@ -125,34 +112,17 @@ set hlsearch
 " set rnu
 set numberwidth=1
 set wildmenu
-set wildignore+=**/node_modules/**
-set wildignore+=**/tmp/**
-set wildignore+=**/bower_components/**
-set wildignore+=**/deps/**
-set wildignore+=**/_build/**
+" set wildignore+=**/node_modules/**
+" set wildignore+=**/tmp/**
+" set wildignore+=**/bower_components/**
+" set wildignore+=**/deps/**
+" set wildignore+=**/_build/**
 set path+=** " poor mans fuzzy find
 " prevent auto hard wraps
 set fo-=t
 
-" Recommended syntastic settings
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
 let NERDTreeShowHidden=1
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_loc_list_height=1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_check_on_open=1
-
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_ruby_checkers = ['rubocop']
-" let g:syntastic_lua_checkers = ['luacheck']
-" let g:syntastic_scss_scss_checkers = ['scss_lint']
-" let g:syntastic_bash_checkers=['shellcheck']
-" let g:syntastic_sh_checkers=['shellcheck']
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_lua_enabled_makers = ['luacheck']
@@ -168,7 +138,6 @@ let g:NERDSpaceDelims = 1
 let g:airline#extensions#tabline#enabled = 1
 " number buffers
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_powerline_fonts = 1
 let g:airline_theme = 'simple'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
@@ -194,12 +163,18 @@ let s:uname = system("echo -n \"$(uname)\"")
 if s:uname == "Darwin"
 endif
 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 " auto-trim whitespace
 " autocmd BufWritePre * %s/\s\+$//e
 command! Trim :%s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
+map <C-p> :FZF!<CR>
 
 abbr jlog console.log
+abbr epry require IEx; IEx.pry
+
 " 4 spaces for shell scripts
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4
 

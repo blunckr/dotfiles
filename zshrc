@@ -114,3 +114,7 @@ fi
 if hash thefuck 2>/dev/null; then
   eval "$(thefuck --alias doh)"
 fi
+
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
