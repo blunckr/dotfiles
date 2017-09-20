@@ -1,3 +1,4 @@
+hs.window.animationDuration = 0
 -------------------
 -- CONFIG RELOAD --
 -------------------
@@ -26,66 +27,57 @@ local function music(action)
   end
 end
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "K", function()
-  music("play")
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "J", function()
-  music("back")
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "L", function()
-  music("forward")
-end)
+local musicControls = {J = "back", K = "play", L = "forward"}
+for key, action in pairs(musicControls) do
+  hs.hotkey.bind({"cmd", "alt", "ctrl"}, key, hs.fnutils.partial(music, action))
+end
 
 ------------
 -- ARROWS --
 ------------
 
-local goLeft = function()
-  hs.eventtap.keyStroke({}, "LEFT", 0)
-end
-local goDown = function()
-  hs.eventtap.keyStroke({}, "DOWN", 0)
-end
-local goUp = function()
-  hs.eventtap.keyStroke({}, "UP", 0)
-end
-local goRight = function()
-  hs.eventtap.keyStroke({}, "RIGHT", 0)
+local arrow = function(direction)
+  hs.eventtap.keyStroke({}, direction, 0)
 end
 
-hs.hotkey.bind({"ctrl"}, "H", goLeft,  nil, goLeft)
-hs.hotkey.bind({"ctrl"}, "J", goDown,  nil, goDown)
-hs.hotkey.bind({"ctrl"}, "K", goUp,    nil, goUp)
-hs.hotkey.bind({"ctrl"}, "L", goRight, nil, goRight)
+local arrowControls = {H = "LEFT", J = "DOWN", K = "UP", L = "RIGHT"}
+for key, direction in pairs(arrowControls) do
+  local move = hs.fnutils.partial(arrow, direction)
+  hs.hotkey.bind({"ctrl"}, key, move, nil, move)
+end
 
 -----------
 -- MOUSE --
 -----------
+local mouseAcc = 1
 
 local move = function(x, y)
   local pos = hs.mouse.getAbsolutePosition()
   hs.mouse.setAbsolutePosition({x = pos.x + x, y = pos.y + y})
+  mouseAcc = mouseAcc * 1.1
 end
 
 local moveLeft = function()
-  move(-20, 0)
+  move(-20 * mouseAcc, 0)
 end
 local moveDown = function()
-  move(0, 20)
+  move(0, 20 * mouseAcc)
 end
 local moveUp = function()
-  move(0, -20)
+  move(0, -20 * mouseAcc)
 end
 local moveRight = function()
-  move(20, 0)
+  move(20 * mouseAcc, 0)
 end
 
-hs.hotkey.bind({"ctrl", "alt"}, "H", moveLeft, nil, moveLeft)
-hs.hotkey.bind({"ctrl", "alt"}, "J", moveDown, nil, moveDown)
-hs.hotkey.bind({"ctrl", "alt"}, "K", moveUp,   nil, moveUp)
-hs.hotkey.bind({"ctrl", "alt"}, "L", moveRight, nil, moveRight)
+local stop = function()
+  mouseAcc = 1
+end
+
+hs.hotkey.bind({"ctrl", "alt"}, "H", moveLeft,  stop, moveLeft)
+hs.hotkey.bind({"ctrl", "alt"}, "J", moveDown,  stop, moveDown)
+hs.hotkey.bind({"ctrl", "alt"}, "K", moveUp,    stop, moveUp)
+hs.hotkey.bind({"ctrl", "alt"}, "L", moveRight, stop, moveRight)
 
 hs.hotkey.bind({"ctrl", "alt"}, "U", function()
   local pos = hs.mouse.getAbsolutePosition()
@@ -96,7 +88,59 @@ hs.hotkey.bind({"ctrl", "alt"}, "I", function()
   hs.eventtap.rightClick(pos)
 end)
 
+---------------
+-- Spectacle --
+---------------
+
+hs.hotkey.bind({"alt", "cmd"}, "F", function()
+  local window = hs.window.focusedWindow()
+  window:maximize()
+end)
+
+hs.hotkey.bind({"alt", "cmd"}, "H", function()
+  local window = hs.window.focusedWindow()
+  window:move(hs.layout.left50)
+end)
+
+hs.hotkey.bind({"alt", "cmd"}, "L", function()
+  local window = hs.window.focusedWindow()
+  window:move(hs.layout.right50)
+end)
+
+hs.hotkey.bind({"ctrl", "alt"}, "H", function()
+  local window = hs.window.focusedWindow()
+  window:moveOneScreenWest()
+end)
+
+hs.hotkey.bind({"ctrl", "alt"}, "L", function()
+  local window = hs.window.focusedWindow()
+  window:moveOneScreenEast()
+end)
 -- Replace alfred?
 -- fuzzy app finder
 -- quit all apps(expect hs)
 -- replace spectacle
+-- replace flycut?
+--
+local chose = function(chosen)
+  hs.alert.show(chosen)
+end
+local chooser = hs.chooser.new(chose)
+local choices = {
+ {
+  ["text"] = "First Choice",
+  ["subText"] = "This is the subtext of the first choice",
+  ["uuid"] = "0001"
+ },
+ { ["text"] = "Second Option",
+   ["subText"] = "I wonder what I should type here?",
+   ["uuid"] = "Bbbb"
+ },
+ { ["text"] = "Third Possibility",
+   ["subText"] = "What a lot of choosing there is going on here!",
+   ["uuid"] = "III3"
+ },
+}
+chooser:choices(choices)
+local show = function() chooser:show() end
+-- hs.hotkey.bind({"cmd"}, "P", show)
