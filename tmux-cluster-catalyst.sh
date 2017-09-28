@@ -16,4 +16,4 @@ tmux send-keys "vim ." C-m
 
 tmux new-window -n "shell"
 
-tmux -CC a -t cluster-catalyst
+tmux a -t cluster-catalyst

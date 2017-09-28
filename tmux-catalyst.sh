@@ -16,5 +16,5 @@ tmux send-keys "vim ." C-m
 
 tmux new-window -n "shell"
 
-tmux -CC attach-session -t catalyst
+tmux attach-session -t catalyst
 

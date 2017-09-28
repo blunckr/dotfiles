@@ -29,7 +29,7 @@ end
 
 local musicControls = {J = "back", K = "play", L = "forward"}
 for key, action in pairs(musicControls) do
-  hs.hotkey.bind({"cmd", "alt", "ctrl"}, key, hs.fnutils.partial(music, action))
+  hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, key, hs.fnutils.partial(music, action))
 end
 
 ------------
@@ -107,20 +107,21 @@ hs.hotkey.bind({"alt", "cmd"}, "L", function()
   window:move(hs.layout.right50)
 end)
 
-hs.hotkey.bind({"ctrl", "alt"}, "H", function()
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "H", function()
   local window = hs.window.focusedWindow()
   window:moveOneScreenWest()
 end)
 
-hs.hotkey.bind({"ctrl", "alt"}, "L", function()
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "L", function()
   local window = hs.window.focusedWindow()
   window:moveOneScreenEast()
 end)
 -- Replace alfred?
 -- fuzzy app finder
 -- quit all apps(expect hs)
--- replace spectacle
 -- replace flycut?
+-- mouse scroll?
+-- mute spotify ads. getCurrentArtist will be blank
 --
 local chose = function(chosen)
   hs.alert.show(chosen)
