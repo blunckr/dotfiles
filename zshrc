@@ -116,5 +116,7 @@ if hash thefuck 2>/dev/null; then
 fi
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
-
+_fzf_compgen_path() {
+  ag -g "" "$1"
+}
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

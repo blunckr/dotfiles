@@ -16,7 +16,6 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 call plug#end()
-
 " Leader
 let mapleader = " "
 
@@ -80,7 +79,7 @@ set colorcolumn=+1
 
 " Numbers
 set number
-set numberwidth=5
+set numberwidth=1
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -105,11 +104,10 @@ set splitright
 set diffopt+=vertical
 
 set ignorecase " case insensitive search
-set smartcase
-set hidden
-set hlsearch
-" set rnu
-set numberwidth=1
+set smartcase " adding a capital letter makes it case sensitive
+set hidden " leave a file with unwritten changes
+" set hlsearch " highlight all matching searches
+" set rnu " relative line numbers
 set wildmenu
 " set wildignore+=**/node_modules/**
 " set wildignore+=**/tmp/**
@@ -169,7 +167,7 @@ endif
 " autocmd BufWritePre * %s/\s\+$//e
 command! Trim :%s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
-map <C-p> :FZF!<CR>
+map <C-p> :FZF<CR>
 
 abbr jlog console.log
 abbr epry require IEx; IEx.pry

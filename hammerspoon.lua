@@ -32,6 +32,30 @@ for key, action in pairs(musicControls) do
   hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, key, hs.fnutils.partial(music, action))
 end
 
+-----------------
+-- Spotify ads --
+-----------------
+
+local spotifyAds = false
+
+hs.timer.doEvery(5, function()
+  if hs.spotify.isRunning() then
+    if hs.spotify.getCurrentArtist() == "" or not hs.spotify.getCurrentArtist() then
+      if not spotifyAds then
+        spotifyAds = true
+        hs.alert.show("AD")
+      end
+      hs.spotify.setVolume(0)
+    else
+      if spotifyAds then
+        spotifyAds = false
+        hs.alert.show("MUSIC")
+      end
+      hs.spotify.setVolume(100)
+    end
+  end
+end)
+
 ------------
 -- ARROWS --
 ------------
@@ -122,26 +146,5 @@ end)
 -- replace flycut?
 -- mouse scroll?
 -- mute spotify ads. getCurrentArtist will be blank
---
-local chose = function(chosen)
-  hs.alert.show(chosen)
-end
-local chooser = hs.chooser.new(chose)
-local choices = {
- {
-  ["text"] = "First Choice",
-  ["subText"] = "This is the subtext of the first choice",
-  ["uuid"] = "0001"
- },
- { ["text"] = "Second Option",
-   ["subText"] = "I wonder what I should type here?",
-   ["uuid"] = "Bbbb"
- },
- { ["text"] = "Third Possibility",
-   ["subText"] = "What a lot of choosing there is going on here!",
-   ["uuid"] = "III3"
- },
-}
-chooser:choices(choices)
-local show = function() chooser:show() end
--- hs.hotkey.bind({"cmd"}, "P", show)
+
+
