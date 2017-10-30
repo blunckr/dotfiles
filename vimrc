@@ -2,17 +2,15 @@
 call plug#begin('~/.vim/plugged')
 " Plug 'scrooloose/syntastic'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'neomake/neomake'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'sheerun/vim-polyglot'
+Plug 'w0rp/ale'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
-Plug 'elixir-lang/vim-elixir'
 Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 call plug#end()
@@ -23,7 +21,7 @@ set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=50
+set history=200
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
@@ -42,14 +40,6 @@ filetype plugin indent on
 
 augroup vimrcEx
   autocmd!
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it for commit messages, when the position is invalid, or when
-  " inside an event handler (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
 
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
@@ -120,15 +110,6 @@ set fo-=t
 
 let NERDTreeShowHidden=1
 
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_lua_enabled_makers = ['luacheck']
-let g:neomake_scss_scss_enabled_makers = ['scss_lint']
-let g:neomake_bash_enabled_makers=['shellcheck']
-let g:neomake_sh_enabled_makers=['shellcheck']
-let g:neomake_elixir_enabled_makers = ['credo']
-autocmd! BufWritePost,BufEnter * Neomake
-
 let g:NERDSpaceDelims = 1
 
 " Enable the list of buffers
@@ -167,7 +148,8 @@ endif
 " autocmd BufWritePre * %s/\s\+$//e
 command! Trim :%s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
-map <C-p> :FZF<CR>
+map <C-p> :Files<CR>
+map <leader>p :Buffers<CR>
 
 abbr jlog console.log
 abbr epry require IEx; IEx.pry

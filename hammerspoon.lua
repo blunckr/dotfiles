@@ -36,24 +36,18 @@ end
 -- Spotify ads --
 -----------------
 
-local spotifyAds = false
-
-hs.timer.doEvery(5, function()
-  if hs.spotify.isRunning() then
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "A", function()
+  local checkAds
+  checkAds = function()
     if hs.spotify.getCurrentArtist() == "" or not hs.spotify.getCurrentArtist() then
-      if not spotifyAds then
-        spotifyAds = true
-        hs.alert.show("AD")
-      end
-      hs.spotify.setVolume(0)
+      hs.timer.doAfter(0.25, checkAds)
     else
-      if spotifyAds then
-        spotifyAds = false
-        hs.alert.show("MUSIC")
-      end
       hs.spotify.setVolume(100)
     end
   end
+
+  hs.spotify.setVolume(0)
+  checkAds()
 end)
 
 ------------

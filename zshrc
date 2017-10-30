@@ -53,7 +53,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vagrant vi-mode asdf)
+plugins=(git vagrant asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,6 +116,8 @@ if hash thefuck 2>/dev/null; then
 fi
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND='ag -g ""'
+# when you use **
 _fzf_compgen_path() {
   ag -g "" "$1"
 }
