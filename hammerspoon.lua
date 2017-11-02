@@ -1,10 +1,15 @@
 hs.window.animationDuration = 0
+
+-- Put hotkeys on this modal so they can be disabled if needed
+local k = hs.hotkey.modal.new({"ctrl", "alt", "cmd"}, "Q", "hotkeys enabled")
+k:bind({"ctrl", "alt", "cmd"}, "Q", "hotkeys disbled", function() k:exit() end)
+
 -------------------
 -- CONFIG RELOAD --
 -------------------
 
 hs.alert("Config Reloaded")
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Z", hs.reload)
+k:bind({"cmd", "alt", "ctrl"}, "Z", hs.reload)
 
 -----------
 -- MUSIC --
@@ -29,14 +34,14 @@ end
 
 local musicControls = {J = "back", K = "play", L = "forward"}
 for key, action in pairs(musicControls) do
-  hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, key, hs.fnutils.partial(music, action))
+  k:bind({"cmd", "alt", "ctrl", "shift"}, key, hs.fnutils.partial(music, action))
 end
 
 -----------------
 -- Spotify ads --
 -----------------
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "A", function()
+k:bind({"cmd", "alt", "ctrl"}, "A", function()
   local checkAds
   checkAds = function()
     if hs.spotify.getCurrentArtist() == "" or not hs.spotify.getCurrentArtist() then
@@ -61,7 +66,7 @@ end
 local arrowControls = {H = "LEFT", J = "DOWN", K = "UP", L = "RIGHT"}
 for key, direction in pairs(arrowControls) do
   local move = hs.fnutils.partial(arrow, direction)
-  hs.hotkey.bind({"ctrl"}, key, move, nil, move)
+  k:bind({"ctrl"}, key, move, nil, move)
 end
 
 -----------
@@ -92,16 +97,16 @@ local stop = function()
   mouseAcc = 1
 end
 
-hs.hotkey.bind({"ctrl", "alt"}, "H", moveLeft,  stop, moveLeft)
-hs.hotkey.bind({"ctrl", "alt"}, "J", moveDown,  stop, moveDown)
-hs.hotkey.bind({"ctrl", "alt"}, "K", moveUp,    stop, moveUp)
-hs.hotkey.bind({"ctrl", "alt"}, "L", moveRight, stop, moveRight)
+k:bind({"ctrl", "alt"}, "H", moveLeft,  stop, moveLeft)
+k:bind({"ctrl", "alt"}, "J", moveDown,  stop, moveDown)
+k:bind({"ctrl", "alt"}, "K", moveUp,    stop, moveUp)
+k:bind({"ctrl", "alt"}, "L", moveRight, stop, moveRight)
 
-hs.hotkey.bind({"ctrl", "alt"}, "U", function()
+k:bind({"ctrl", "alt"}, "U", function()
   local pos = hs.mouse.getAbsolutePosition()
   hs.eventtap.leftClick(pos)
 end)
-hs.hotkey.bind({"ctrl", "alt"}, "I", function()
+k:bind({"ctrl", "alt"}, "I", function()
   local pos = hs.mouse.getAbsolutePosition()
   hs.eventtap.rightClick(pos)
 end)
@@ -110,27 +115,27 @@ end)
 -- Spectacle --
 ---------------
 
-hs.hotkey.bind({"alt", "cmd"}, "F", function()
+k:bind({"alt", "cmd"}, "F", function()
   local window = hs.window.focusedWindow()
   window:maximize()
 end)
 
-hs.hotkey.bind({"alt", "cmd"}, "H", function()
+k:bind({"alt", "cmd"}, "H", function()
   local window = hs.window.focusedWindow()
   window:move(hs.layout.left50)
 end)
 
-hs.hotkey.bind({"alt", "cmd"}, "L", function()
+k:bind({"alt", "cmd"}, "L", function()
   local window = hs.window.focusedWindow()
   window:move(hs.layout.right50)
 end)
 
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "H", function()
+k:bind({"ctrl", "alt", "cmd"}, "H", function()
   local window = hs.window.focusedWindow()
   window:moveOneScreenWest()
 end)
 
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "L", function()
+k:bind({"ctrl", "alt", "cmd"}, "L", function()
   local window = hs.window.focusedWindow()
   window:moveOneScreenEast()
 end)
@@ -139,6 +144,4 @@ end)
 -- quit all apps(expect hs)
 -- replace flycut?
 -- mouse scroll?
--- mute spotify ads. getCurrentArtist will be blank
-
-
+k:enter()
