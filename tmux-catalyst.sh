@@ -9,7 +9,7 @@ tmux new-window -n "elastic"
 tmux send-keys "elasticsearch" C-m
 
 tmux new-window -n "elixir"
-tmux send-keys "IEx -S mix phoenix.server" C-m
+tmux send-keys "iex -S mix" C-m
 
 tmux new-window -n "vim"
 tmux send-keys "vim ." C-m

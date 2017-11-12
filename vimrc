@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'scrooloose/syntastic'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
+Plug 'jremmen/vim-ripgrep'
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'bling/vim-airline'
@@ -12,7 +12,6 @@ Plug 'dracula/vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'easymotion/vim-easymotion'
 call plug#end()
 " Leader
 let mapleader = " "
@@ -119,11 +118,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme = 'simple'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
-
-" easymotion
-let g:EasyMotion_smartcase = 1
-" two character searches
-nmap <Leader>s <Plug>(easymotion-s2)
 
 set t_Co=256
 " set background=dark
