@@ -12,6 +12,7 @@ Plug 'dracula/vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
+" Plug 'vifm/vifm.vim'
 call plug#end()
 " Leader
 let mapleader = " "
@@ -27,7 +28,6 @@ set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set modeline
-set cursorline
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -122,6 +122,7 @@ let g:airline_skip_empty_sections=1
 set t_Co=256
 " set background=dark
 color dracula
+highlight ALEWarning ctermbg=DarkMagenta
 
 if has('gui_running')
   set guifont=Monospace\ 14
@@ -142,6 +143,7 @@ endif
 " autocmd BufWritePre * %s/\s\+$//e
 command! Trim :%s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
+map <Leader>l :w \| !love .<CR>
 map <C-p> :Files<CR>
 map <leader>p :Buffers<CR>
 

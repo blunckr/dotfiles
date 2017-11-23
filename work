@@ -5,6 +5,7 @@ apps=(
   "Messages"
   "Slack"
   "iTerm"
+  "Dash"
 )
 
 for app in "${apps[@])}"

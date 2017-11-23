@@ -11,6 +11,13 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -86,31 +93,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # export PATH="/usr/local/bin:$PATH"
-alias v="/usr/local/bin/vim"
+function ssht() {
+  ssh $* -t "tmux a -t ssh || tmux new -s ssh"
+}
+
 alias pg="postgres -D /usr/local/var/postgres/"
 # export EDITOR="/usr/local/bin/vim"
-# nvm use default > /dev/null
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
-export LC_ALL="en_US.UTF-8"
 
 if [ -d "$HOME/.asdf" ]
 then
   . "$HOME/.asdf/asdf.sh"
   . "$HOME/.asdf/completions/asdf.bash"
 fi
-# if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  # . $(brew --prefix)/etc/bash_completion
-# fi
-
-# function parse_git_dirty {
-  # [[ $(git status --porcelain 2> /dev/null | tail -n1) != "" ]] && echo "*"
-# }
-
-# function parse_git_branch {
-  # git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
-# }
-# export PS1="\[\e[34m\]\w\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\n>> "
 
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND='rg --files'
