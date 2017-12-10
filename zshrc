@@ -115,3 +115,8 @@ _fzf_compgen_path() {
   rg --files
 }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ "$TERM" = "xterm" ]
+then
+  export TERM="xterm-256color"
+fi
