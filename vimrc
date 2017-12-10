@@ -11,8 +11,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdtree'
-" Plug 'vifm/vifm.vim'
+Plug 'vifm/vifm.vim'
 call plug#end()
 " Leader
 let mapleader = " "

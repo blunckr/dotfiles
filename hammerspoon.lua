@@ -1,23 +1,40 @@
 hs.window.animationDuration = 0
-
+local hyper = {"cmd", "alt", "ctrl", "shift"}
 -- Put hotkeys on this modal so they can be disabled if needed
-local k = hs.hotkey.modal.new({"ctrl", "alt", "cmd"}, "Q", "hotkeys enabled")
-k:bind({"ctrl", "alt", "cmd"}, "Q", "hotkeys disbled", function() k:exit() end)
+local k = hs.hotkey.modal.new(hyper, "Q", "hotkeys enabled")
+k:bind(hyper, "Q", "hotkeys disbled", function() k:exit() end)
 
 -------------------
 -- CONFIG RELOAD --
 -------------------
 
 hs.alert("Config Reloaded")
-k:bind({"cmd", "alt", "ctrl"}, "Z", hs.reload)
+k:bind(hyper, "Z", hs.reload)
 
 -----------
 -- MUSIC --
 -----------
+local cmus = {
+  isRunning = function()
+    local _, running = hs.execute('/usr/local/bin/cmus-remote -Q')
+    return running
+  end,
+  playpause = function()
+    hs.execute('/usr/local/bin/cmus-remote -u')
+  end,
+  previous = function()
+    hs.execute('/usr/local/bin/cmus-remote -r')
+  end,
+  next = function()
+    hs.execute('/usr/local/bin/cmus-remote -n')
+  end,
+}
 
 local function music(action)
   local m
-  if hs.itunes.isRunning() then
+  if cmus.isRunning() then
+    m = cmus
+  elseif hs.itunes.isRunning() then
     m = hs.itunes
   elseif hs.spotify.isRunning() then
     m = hs.spotify
@@ -32,16 +49,16 @@ local function music(action)
   end
 end
 
-local musicControls = {J = "back", K = "play", L = "forward"}
+local musicControls = {B = "back", N = "play", M = "forward"}
 for key, action in pairs(musicControls) do
-  k:bind({"cmd", "alt", "ctrl", "shift"}, key, hs.fnutils.partial(music, action))
+  k:bind(hyper, key, hs.fnutils.partial(music, action))
 end
 
 -----------------
 -- Spotify ads --
 -----------------
 
-k:bind({"cmd", "alt", "ctrl"}, "A", function()
+k:bind(hyper, "A", function()
   local checkAds
   checkAds = function()
     if hs.spotify.getCurrentArtist() == "" or not hs.spotify.getCurrentArtist() then
@@ -54,20 +71,6 @@ k:bind({"cmd", "alt", "ctrl"}, "A", function()
   hs.spotify.setVolume(0)
   checkAds()
 end)
-
-------------
--- ARROWS --
-------------
-
-local arrow = function(direction)
-  hs.eventtap.keyStroke({}, direction, 0)
-end
-
-local arrowControls = {H = "LEFT", J = "DOWN", K = "UP", L = "RIGHT"}
-for key, direction in pairs(arrowControls) do
-  local move = hs.fnutils.partial(arrow, direction)
-  k:bind({"ctrl"}, key, move, nil, move)
-end
 
 -----------
 -- MOUSE --

@@ -98,6 +98,8 @@ function ssht() {
 }
 
 alias pg="postgres -D /usr/local/var/postgres/"
+alias retag="rg --files | ctags -L-"
+
 # export EDITOR="/usr/local/bin/vim"
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
