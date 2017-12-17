@@ -1,7 +1,6 @@
 #!/bin/bash
 apps=(
   "Google Chrome"
-  "Mail"
   "Messages"
   "Slack"
   "iTerm"

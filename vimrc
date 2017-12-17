@@ -143,6 +143,7 @@ endif
 command! Trim :%s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 map <Leader>l :w \| !love .<CR>
+map <Leader>h :set hlsearch!<CR>
 map <C-p> :Files<CR>
 map <leader>p :Buffers<CR>
 
