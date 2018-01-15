@@ -1,17 +1,19 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 " Plug 'scrooloose/syntastic'
+Plug 'airblade/vim-gitgutter'
+Plug 'bling/vim-airline'
+Plug 'dracula/vim'
+Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'sheerun/vim-polyglot'
-Plug 'w0rp/ale'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'dracula/vim'
-Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'thiagoalessio/rainbow_levels.vim'
+Plug 'tpope/vim-surround'
 Plug 'vifm/vifm.vim'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
 call plug#end()
 " Leader
 let mapleader = " "
@@ -94,7 +96,7 @@ set diffopt+=vertical
 set ignorecase " case insensitive search
 set smartcase " adding a capital letter makes it case sensitive
 set hidden " leave a file with unwritten changes
-" set hlsearch " highlight all matching searches
+set hlsearch " highlight all matching searches
 " set rnu " relative line numbers
 set wildmenu
 " set wildignore+=**/node_modules/**
@@ -114,14 +116,28 @@ let g:NERDSpaceDelims = 1
 let g:airline#extensions#tabline#enabled = 1
 " number buffers
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme = 'simple'
+let g:airline_theme = 'ubaryd'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
+
+let g:rainbow_levels = [
+    \{'ctermfg': 84,  'guifg': '#50fa7b'},
+    \{'ctermfg': 117, 'guifg': '#8be9fd'},
+    \{'ctermfg': 61,  'guifg': '#6272a4'},
+    \{'ctermfg': 212, 'guifg': '#ff79c6'},
+    \{'ctermfg': 203, 'guifg': '#ffb86c'},
+    \{'ctermfg': 228, 'guifg': '#f1fa8c'},
+    \{'ctermfg': 15,  'guifg': '#f8f8f2'},
+    \{'ctermfg': 231, 'guifg': '#525563'}]
+
+map <leader>r :RainbowLevelsToggle<cr>
+
 
 set t_Co=256
 " set background=dark
 color dracula
-highlight ALEWarning ctermbg=DarkMagenta
+" highlight ALEWarning ctermbg=Red
+let g:ale_set_highlights = 0
 
 if has('gui_running')
   set guifont=Monospace\ 14
@@ -143,7 +159,8 @@ endif
 command! Trim :%s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 map <Leader>l :w \| !love .<CR>
-map <Leader>h :set hlsearch!<CR>
+" clear highlights
+map <Leader>h :noh<CR>
 map <C-p> :Files<CR>
 map <leader>p :Buffers<CR>
 
