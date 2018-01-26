@@ -3,6 +3,7 @@
 -- hjkl - move
 -- ; arrow toggle
 -- z reload
+-- D toggle hs icon
 ----------------
 -- Key Modals --
 ----------------

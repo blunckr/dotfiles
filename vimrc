@@ -115,8 +115,9 @@ let g:NERDSpaceDelims = 1
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " number buffers
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme = 'ubaryd'
+let g:airline_theme = 'bubblegum'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
 
