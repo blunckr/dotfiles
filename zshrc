@@ -60,7 +60,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vagrant asdf docker vi-mode)
+plugins=(git vagrant docker vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,12 +97,10 @@ function ssht() {
   ssh $* -t "tmux a -t ssh || tmux new -s ssh"
 }
 
-alias pg="postgres -D /usr/local/var/postgres/"
 alias retag="rg --files | ctags -L-"
 
 # export EDITOR="/usr/local/bin/vim"
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
-export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
 if [ -d "$HOME/.asdf" ]
 then
@@ -117,8 +115,3 @@ _fzf_compgen_path() {
   rg --files
 }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-if [ "$TERM" = "xterm" ]
-then
-  export TERM="xterm-256color"
-fi

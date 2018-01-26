@@ -138,7 +138,6 @@ set t_Co=256
 " set background=dark
 color dracula
 " highlight ALEWarning ctermbg=Red
-let g:ale_set_highlights = 0
 
 if has('gui_running')
   set guifont=Monospace\ 14
