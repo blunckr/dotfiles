@@ -1,6 +1,5 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
-" Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'dracula/vim'
@@ -115,7 +114,7 @@ let g:NERDSpaceDelims = 1
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " number buffers
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme = 'bubblegum'
 let g:airline_section_y = ''
@@ -138,9 +137,11 @@ set t_Co=256
 " set background=dark
 color dracula
 " highlight ALEWarning ctermbg=Red
+let g:ale_echo_cursor = 1
 
 if has('gui_running')
-  set guifont=Monospace\ 14
+  set guifont=Terminus\ 14
+  set guicursor+=a:blinkon0
 endif
 if has('gui_macvim')
   set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h16
@@ -169,4 +170,5 @@ abbr epry require IEx; IEx.pry
 
 " 4 spaces for shell scripts
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4
+autocmd FileType go setlocal noexpandtab nolist
 

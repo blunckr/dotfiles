@@ -13,12 +13,11 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:monospace 8
+font pango:Terminus 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-# font pango:DejaVu Sans Mono 10
-font pango:Meslo LG S for Powerline Regular 12
+#font pango:DejaVu Sans Mono 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -31,14 +30,18 @@ font pango:Meslo LG S for Powerline Regular 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $HOME/bin/terminal-at-path.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -l 20 -fn "Meslo LG S for Powerline Regular-15"
-bindsym $mod+v exec /opt/clipmenu/clipmenu -l 20 -fn "Meslo LG S for Powerline Regular-15"
+bindsym $mod+d exec xfce4-terminal -T FZFMENU -x $HOME/bin/fzfmenu.sh
+for_window [title="^FZFMENU$"] floating enable
+for_window [title="^FZFMENU$"] border pixel 1
+
+# exec /home/ryker/bin/app-launcher.sh
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -69,10 +72,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+bar split h
+bindsym $mod+g split h
 
 # split in vertical orientation
-bindsym $mod+minus split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -81,9 +84,6 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
-# change default layout to tabbed
-workspace_layout tabbed
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -109,6 +109,18 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+h workspace prev
+
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+l workspace next
+
+bindsym $mod+Ctrl+Shift+Left move container to workspace prev
+bindsym $mod+Ctrl+Shift+h move container to workspace prev
+
+bindsym $mod+Ctrl+Shift+Right move container to workspace next
+bindsym $mod+Ctrl+Shift+l move container to workspace next
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -126,8 +138,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec ~/dotfiles/exit_menu.sh
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -155,8 +166,18 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
+
+exec xset r rate 300 25
+exec lappy.sh
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status
+        tray_output primary
 }
