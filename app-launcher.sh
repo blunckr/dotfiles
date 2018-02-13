@@ -12,6 +12,7 @@ while true
 do
     if read app < $pipe
     then
-        nohup "$app" &
+        "$app" &
+        disown
     fi
 done

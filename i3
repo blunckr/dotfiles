@@ -174,6 +174,7 @@ bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
 
 exec xset r rate 300 25
 exec lappy.sh
+exec app-launcher.sh
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
