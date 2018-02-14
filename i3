@@ -172,6 +172,15 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%
 bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
 
+bindsym XF86AudioPrev exec music.sh prev
+bindsym $mod+n exec music.sh prev
+
+bindsym XF86AudioPlay exec music.sh play
+bindsym $mod+m exec music.sh play
+
+bindsym XF86AudioNext exec music.sh next
+bindsym $mod+comma exec music.sh next
+
 exec xset r rate 300 25
 exec lappy.sh
 exec app-launcher.sh
