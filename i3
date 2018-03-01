@@ -39,6 +39,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec xfce4-terminal -T FZFMENU -x $HOME/bin/fzfmenu.sh
 for_window [title="^FZFMENU$"] floating enable
 for_window [title="^FZFMENU$"] border pixel 1
+for_window [title="^QEMU"] floating enable
 
 # exec /home/ryker/bin/app-launcher.sh
 

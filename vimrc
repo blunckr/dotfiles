@@ -133,7 +133,6 @@ let g:rainbow_levels = [
 
 map <leader>r :RainbowLevelsToggle<cr>
 
-
 set t_Co=256
 " set background=dark
 color dracula
@@ -168,6 +167,7 @@ map <leader>p :Buffers<CR>
 
 abbr jlog console.log
 abbr epry require IEx; IEx.pry
+abbr rpry require 'pry'; binding.pry
 
 " 4 spaces for shell scripts
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4
