@@ -187,6 +187,16 @@ bindsym $mod+comma exec music.sh next
 exec xset r rate 300 25
 exec lappy.sh
 exec app-launcher.sh
+exec xfce4-power-manager
+
+
+# Don't show the title, just a border
+for_window [title="^SCRATCHTERM$"] border pixel 1
+for_window [title="^SCRATCHTERM$"] move to scratchpad
+
+bindsym $mod+Shift+Return [title="^SCRATCHTERM$"] scratchpad show
+
+exec xfce4-terminal -T SCRATCHTERM
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
