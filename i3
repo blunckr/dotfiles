@@ -40,6 +40,7 @@ bindsym $mod+d exec xfce4-terminal -T FZFMENU -x $HOME/bin/fzfmenu.sh
 for_window [title="^FZFMENU$"] floating enable
 for_window [title="^FZFMENU$"] border pixel 1
 for_window [title="^QEMU"] floating enable
+bindsym $mod+c exec xfce4-terminal -T FZFMENU -x $HOME/bin/clipmenu.sh
 
 # exec /home/ryker/bin/app-launcher.sh
 
@@ -169,8 +170,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+# bindsym XF86MonBrightnessUp exec light -A 5
+# bindsym XF86MonBrightnessDown exec light -U 5
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%
 bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
@@ -187,7 +188,9 @@ bindsym $mod+comma exec music.sh next
 exec xset r rate 300 25
 exec lappy.sh
 exec app-launcher.sh
+exec watch-clipboard.sh
 exec xfce4-power-manager
+exec gnome-calculator
 
 
 # Don't show the title, just a border
@@ -195,6 +198,10 @@ for_window [title="^SCRATCHTERM$"] border pixel 1
 for_window [title="^SCRATCHTERM$"] move to scratchpad
 
 bindsym $mod+Shift+Return [title="^SCRATCHTERM$"] scratchpad show
+
+for_window [title="^gnome-calculator$"] move to scratchpad
+bindsym XF86Calculator [title="^gnome-calculator$"] scratchpad show
+bindsym $mod+y [title="^gnome-calculator$"] scratchpad show
 
 exec xfce4-terminal -T SCRATCHTERM
 
