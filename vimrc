@@ -8,7 +8,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'thiagoalessio/rainbow_levels.vim'
 Plug 'tpope/vim-surround'
 Plug 'vifm/vifm.vim'
 Plug 'vim-airline/vim-airline-themes'
@@ -120,18 +119,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme = 'bubblegum'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
-
-let g:rainbow_levels = [
-    \{'ctermfg': 84,  'guifg': '#50fa7b'},
-    \{'ctermfg': 117, 'guifg': '#8be9fd'},
-    \{'ctermfg': 61,  'guifg': '#6272a4'},
-    \{'ctermfg': 212, 'guifg': '#ff79c6'},
-    \{'ctermfg': 203, 'guifg': '#ffb86c'},
-    \{'ctermfg': 228, 'guifg': '#f1fa8c'},
-    \{'ctermfg': 15,  'guifg': '#f8f8f2'},
-    \{'ctermfg': 231, 'guifg': '#525563'}]
-
-map <leader>r :RainbowLevelsToggle<cr>
 
 set t_Co=256
 " set background=dark
