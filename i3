@@ -172,9 +172,9 @@ bindsym $mod+r mode "resize"
 
 # bindsym XF86MonBrightnessUp exec light -A 5
 # bindsym XF86MonBrightnessDown exec light -U 5
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 bindsym XF86AudioPrev exec music.sh prev
 bindsym $mod+n exec music.sh prev
@@ -191,6 +191,7 @@ exec app-launcher.sh
 exec watch-clipboard.sh
 exec xfce4-power-manager
 exec gnome-calculator
+exec feh --bg-scale wallpaper/animal-collective.jpg
 
 
 # Don't show the title, just a border
@@ -208,6 +209,27 @@ exec xfce4-terminal -T SCRATCHTERM
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
-        tray_output primary
+  status_command i3status
+  tray_output primary
+
+  colors {
+    background #000000
+    statusline #ffffff
+    separator #666666
+
+    focused_workspace  #4c7899 #6272a4 #ffffff
+    active_workspace   #333333 #5f676a #ffffff
+    inactive_workspace #333333 #222222 #888888
+    urgent_workspace   #2f343a #ff5555 #ffffff
+    binding_mode       #2f343a #900000 #ffffff
+  }
 }
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #6272a4 #ffffff #8be9fd   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #ff5555 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff

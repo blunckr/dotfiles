@@ -122,6 +122,8 @@ let g:airline_skip_empty_sections=1
 
 set t_Co=256
 " set background=dark
+let g:dracula_italic = 0
+let g:dracula_colorterm = 0
 color dracula
 " highlight ALEWarning ctermbg=Red
 let g:ale_echo_cursor = 1
