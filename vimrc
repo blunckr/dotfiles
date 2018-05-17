@@ -9,7 +9,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
-Plug 'vifm/vifm.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 call plug#end()
@@ -121,7 +120,6 @@ let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
 
 set t_Co=256
-" set background=dark
 let g:dracula_italic = 0
 let g:dracula_colorterm = 0
 color dracula
@@ -129,8 +127,11 @@ color dracula
 let g:ale_echo_cursor = 1
 
 if has('gui_running')
+  let $FZF_DEFAULT_COMMAND = 'rg --files'
   set guifont=Terminus\ 14
   set guicursor+=a:blinkon0
+  let g:dracula_colorterm = 1
+  set background=dark
 endif
 if has('gui_macvim')
   set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h16

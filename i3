@@ -39,6 +39,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec xfce4-terminal -T FZFMENU -x $HOME/bin/fzfmenu.sh
 for_window [title="^FZFMENU$"] floating enable
 for_window [title="^FZFMENU$"] border pixel 1
+# start file manager
+bindsym $mod+semicolon exec thunar-at-path.sh
 # for_window [title="^QEMU"] floating enable
 bindsym $mod+c exec xfce4-terminal -T FZFMENU -x $HOME/bin/clipmenu.sh
 
@@ -172,9 +174,9 @@ bindsym $mod+r mode "resize"
 
 # bindsym XF86MonBrightnessUp exec light -A 5
 # bindsym XF86MonBrightnessDown exec light -U 5
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
 
 bindsym XF86AudioPrev exec music.sh prev
 bindsym $mod+n exec music.sh prev
