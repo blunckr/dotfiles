@@ -36,12 +36,13 @@ bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec xfce4-terminal -T FZFMENU -x $HOME/bin/fzfmenu.sh
-for_window [title="^FZFMENU$"] floating enable
-for_window [title="^FZFMENU$"] border pixel 1
-# start file manager
+bindsym $mod+d exec dmenu_run -l 10
+# bindsym $mod+d exec xfce4-terminal -T FZFMENU -x $HOME/bin/fzfmenu.sh
+# for_window [title="^FZFMENU$"] floating enable
+# for_window [title="^FZFMENU$"] border pixel 1
 # for_window [title="^QEMU"] floating enable
-bindsym $mod+c exec xfce4-terminal -T FZFMENU -x $HOME/bin/clipmenu.sh
+# bindsym $mod+c exec xfce4-terminal -T FZFMENU -x $HOME/bin/clipmenu.sh
+bindsym $mod+c exec xfce4-popup-clipman
 
 # exec /home/ryker/bin/app-launcher.sh
 
@@ -147,26 +148,26 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+  # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+  # Pressing left will shrink the window’s width.
+  # Pressing right will grow the window’s width.
+  # Pressing up will shrink the window’s height.
+  # Pressing down will grow the window’s height.
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -203,26 +204,27 @@ bindsym $mod+m exec music.sh play
 bindsym XF86AudioNext exec music.sh next
 bindsym $mod+comma exec music.sh next
 
-exec xset r rate 300 25
-exec lappy.sh
-exec app-launcher.sh
-exec watch-clipboard.sh
-exec xfce4-power-manager
-exec gnome-calculator
-exec feh --bg-scale wallpaper/animal-collective.jpg
+exec --no-startup-id xset r rate 300 25
+exec --no-startup-id lappy.sh
+# exec app-launcher.sh
+# exec watch-clipboard.sh
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id xfce4-clipman
+exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
 
 
 # Don't show the title, just a border
 for_window [title="^SCRATCHTERM$"] border pixel 1
 for_window [title="^SCRATCHTERM$"] move to scratchpad
+exec --no-startup-id xfce4-terminal -T SCRATCHTERM
 
 bindsym $mod+Shift+Return [title="^SCRATCHTERM$"] scratchpad show
 
 for_window [title="^gnome-calculator$"] move to scratchpad
 bindsym XF86Calculator [title="^gnome-calculator$"] scratchpad show
 bindsym $mod+y [title="^gnome-calculator$"] scratchpad show
+exec --no-startup-id gnome-calculator
 
-exec xfce4-terminal -T SCRATCHTERM
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
