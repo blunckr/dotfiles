@@ -175,14 +175,14 @@ set $mode_launcher Launch: [c]hrome [i]ncognito g[v]im [t]hunar [d]beaver [g]itg
 bindsym $mod+semicolon mode "$mode_launcher"
 
 mode "$mode_launcher" {
-  bindsym c exec chromium-browser
-  bindsym i exec chromium-browser --incognito
-  bindsym v exec ~/bin/program-at-path.sh gvim
-  bindsym t exec ~/bin/program-at-path.sh thunar
-  bindsym d exec dbeaver
-  bindsym g exec ~/bin/program-at-path.sh gitg
-  bindsym s exec slack
-  bindsym m exec spotify
+  bindsym c exec chromium-browser                ; mode "default"
+  bindsym i exec chromium-browser --incognito    ; mode "default"
+  bindsym v exec ~/bin/program-at-path.sh gvim   ; mode "default"
+  bindsym t exec ~/bin/program-at-path.sh thunar ; mode "default"
+  bindsym d exec dbeaver                         ; mode "default"
+  bindsym g exec ~/bin/program-at-path.sh gitg   ; mode "default"
+  bindsym s exec slack                           ; mode "default"
+  bindsym m exec spotify                         ; mode "default"
 
   bindsym Escape mode "default"
   bindsym Return mode "default"
