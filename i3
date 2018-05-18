@@ -30,7 +30,7 @@ font pango:Terminus 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $HOME/bin/terminal-at-path.sh
+bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -40,7 +40,6 @@ bindsym $mod+d exec xfce4-terminal -T FZFMENU -x $HOME/bin/fzfmenu.sh
 for_window [title="^FZFMENU$"] floating enable
 for_window [title="^FZFMENU$"] border pixel 1
 # start file manager
-bindsym $mod+semicolon exec thunar-at-path.sh
 # for_window [title="^QEMU"] floating enable
 bindsym $mod+c exec xfce4-terminal -T FZFMENU -x $HOME/bin/clipmenu.sh
 
@@ -171,6 +170,23 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+set $mode_launcher Launch: [c]hrome [i]ncognito g[v]im [t]hunar [d]beaver [g]itg [s]lack [m]spotify
+bindsym $mod+semicolon mode "$mode_launcher"
+
+mode "$mode_launcher" {
+  bindsym c exec chromium-browser
+  bindsym i exec chromium-browser --incognito
+  bindsym v exec ~/bin/program-at-path.sh gvim
+  bindsym t exec ~/bin/program-at-path.sh thunar
+  bindsym d exec dbeaver
+  bindsym g exec ~/bin/program-at-path.sh gitg
+  bindsym s exec slack
+  bindsym m exec spotify
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
 
 # bindsym XF86MonBrightnessUp exec light -A 5
 # bindsym XF86MonBrightnessDown exec light -U 5
