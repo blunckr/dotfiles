@@ -189,12 +189,6 @@ mode "$mode_launcher" {
   bindsym Return mode "default"
 }
 
-# bindsym XF86MonBrightnessUp exec light -A 5
-# bindsym XF86MonBrightnessDown exec light -U 5
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
-
 bindsym XF86AudioPrev exec music.sh prev
 bindsym $mod+n exec music.sh prev
 
@@ -209,6 +203,7 @@ exec --no-startup-id lappy.sh
 # exec app-launcher.sh
 # exec watch-clipboard.sh
 exec --no-startup-id xfce4-power-manager
+exec --no-startup-id xfce4-volumed
 exec --no-startup-id xfce4-clipman
 exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
 
