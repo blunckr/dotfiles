@@ -162,6 +162,91 @@ mode "$mode_launcher" {
   bindsym Return mode "default"
 }
 
+mode "mouse" {
+
+    # set your three speeds here
+
+    set $slow 1
+    set $quick 50
+    set $fast 200
+
+    # Mouse movement (quick/fine-tuned) -- vim keybindings
+
+    bindsym h exec xdotool mousemove_relative -- -$quick 0
+    bindsym j exec xdotool mousemove_relative 0 $quick
+    bindsym k exec xdotool mousemove_relative -- 0 -$quick
+    bindsym l exec xdotool mousemove_relative $quick 0
+
+    # Mouse movement (quick/fine-tuned) -- arrow keys
+
+    bindsym Left exec xdotool mousemove_relative -- -$quick 0
+    bindsym Down exec xdotool mousemove_relative 0 $quick
+    bindsym Up exec xdotool mousemove_relative -- 0 -$quick
+    bindsym Right exec xdotool mousemove_relative $quick 0
+
+    # Mouse movement (fast) -- vim keybindings
+
+    bindsym Shift+h exec xdotool mousemove_relative -- -$fast 0
+    bindsym Shift+j exec xdotool mousemove_relative 0 $fast
+    bindsym Shift+k exec xdotool mousemove_relative -- 0 -$fast
+    bindsym Shift+l exec xdotool mousemove_relative $fast 0
+
+    # Mouse movement (fast) -- arrow keys
+
+    bindsym Shift+Left exec xdotool mousemove_relative -- -$fast 0
+    bindsym Shift+Down exec xdotool mousemove_relative 0 $fast
+    bindsym Shift+Up exec xdotool mousemove_relative -- 0 -$fast
+    bindsym Shift+Right exec xdotool mousemove_relative $fast 0
+
+    # Mouse movement (slow) -- vim keybindings
+
+    bindsym Ctrl+h exec xdotool mousemove_relative -- -$slow 0
+    bindsym Ctrl+j exec xdotool mousemove_relative 0 $slow
+    bindsym Ctrl+k exec xdotool mousemove_relative -- 0 -$slow
+    bindsym Ctrl+l exec xdotool mousemove_relative $slow 0
+
+    # Mouse movement (slow) -- arrow keys
+
+    bindsym Ctrl+Left exec xdotool mousemove_relative -- -$slow 0
+    bindsym Ctrl+Down exec xdotool mousemove_relative 0 $slow
+    bindsym Ctrl+Up exec xdotool mousemove_relative -- 0 -$slow
+    bindsym Ctrl+Right exec xdotool mousemove_relative $slow 0
+
+    # Left Click
+    bindsym f exec xdotool click 1
+
+    # Middle Click
+    bindsym d exec xdotool click 2
+
+    # Right Click
+    bindsym s exec xdotool click 3
+
+    # Left Click-and-drag
+    bindsym Shift+f exec xdotool mousedown 1
+
+    # Middle Click-and-drag 
+    bindsym Shift+d exec xdotool mousedown 2
+
+    # Right Click-and-drag
+    bindsym Shift+s exec xdotool mousedown 3
+
+    # Left Drag release
+    bindsym Ctrl+f exec xdotool mouseup 1
+
+    # Middle Drag release
+    bindsym Ctrl+d exec xdotool mouseup 2
+
+    # Right Drag release
+    bindsym Ctrl+s exec xdotool mouseup 3
+
+
+    # return to normal keybindings -- IMPORTANT!!
+
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+t mode "mouse"
+
 bindsym XF86AudioPrev exec music.sh prev
 bindsym $mod+n exec music.sh prev
 

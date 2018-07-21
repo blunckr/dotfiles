@@ -22,7 +22,7 @@ email = rykerblunck@gmail.com
 [difftool]
 	prompt = false
 [merge]
-	tool = vimdiff
-	; conflictstyle = diff3
+	tool = meld
+  ;conflictstyle = diff3
 [mergetool]
 	prompt = false

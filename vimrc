@@ -26,7 +26,7 @@ set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set modeline
-set mouse=a
+" set mouse=a
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -66,8 +66,8 @@ set textwidth=80
 set colorcolumn=+1
 
 " Numbers
-set number
-set numberwidth=1
+" set number
+" set numberwidth=1
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -94,7 +94,7 @@ set diffopt+=vertical
 set ignorecase " case insensitive search
 set smartcase " adding a capital letter makes it case sensitive
 set hidden " leave a file with unwritten changes
-set hlsearch " highlight all matching searches
+" set hlsearch " highlight all matching searches
 " set rnu " relative line numbers
 set wildmenu
 " set wildignore+=**/node_modules/**
@@ -148,6 +148,7 @@ endif
 " auto-trim whitespace
 " autocmd BufWritePre * %s/\s\+$//e
 command! Trim :%s/\s\+$//e
+
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 map <Leader>l :w \| !love .<CR>
 " clear highlights
@@ -155,9 +156,16 @@ map <Leader>h :noh<CR>
 map <C-p> :Files<CR>
 map <leader>p :Buffers<CR>
 
+map <Leader>h <C-w>h
+map <Leader>j <C-w>j
+map <Leader>k <C-w>k
+map <Leader>l <C-w>l
+
 abbr jlog console.log
 abbr epry require IEx; IEx.pry
 abbr rpry require 'pry'; binding.pry
+
+let @c = "0f_x~@c"
 
 " 4 spaces for shell scripts
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4

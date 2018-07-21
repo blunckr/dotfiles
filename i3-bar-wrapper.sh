@@ -11,6 +11,12 @@ function set_sections {
         read -r artist < /tmp/pianobar-artist
         read -r song < /tmp/pianobar-song
         text="$artist - $song"
+    elif pidof spotify
+    then
+        text=$(spotifycli --status)
+        # " - The Home Depot"
+        # pacmd list-sink-inputs
+        # pactl set-sink-input-mute 54 false
     else
         text="No Music"
     fi
