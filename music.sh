@@ -1,5 +1,7 @@
 #!/bin/bash
 
+any_players=$(playerctl --list-all | wc -l)
+
 if cmus-remote -C
 then
     case $1 in
@@ -13,11 +15,11 @@ then
         play) echo -n 'p' > ~/.config/pianobar/ctl;;
         next) echo -n 'n' > ~/.config/pianobar/ctl;;
     esac
-elif pidof spotify
+elif [ $any_players != 0 ]
 then
     case $1 in
-        prev) spotifycli --prev;;
-        play) spotifycli --playpause;;
-        next) spotifycli --next;;
+        prev) playerctl previous;;
+        play) playerctl play-pause;;
+        next) playerctl next;;
     esac
 fi
