@@ -4,11 +4,11 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Terminus 12
+font pango:xos4 Terminus 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -20,7 +20,9 @@ bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -l 10
+# bindsym $mod+d exec dmenu_run -l 10
+bindsym $mod+d exec rofi -show run
+bindsym $mod+Tab exec rofi -show window
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+c exec xfce4-popup-clipman
 
@@ -151,10 +153,9 @@ bindsym $mod+semicolon mode "$mode_launcher"
 mode "$mode_launcher" {
   bindsym c exec chromium-browser                ; mode "default"
   bindsym i exec chromium-browser --incognito    ; mode "default"
-  bindsym v exec ~/bin/program-at-path.sh gvim   ; mode "default"
-  bindsym t exec ~/bin/program-at-path.sh thunar ; mode "default"
+  bindsym v exec program-at-path.sh gvim         ; mode "default"
+  bindsym t exec program-at-path.sh thunar       ; mode "default"
   bindsym d exec dbeaver                         ; mode "default"
-  bindsym g exec ~/bin/program-at-path.sh gitg   ; mode "default"
   bindsym s exec slack                           ; mode "default"
   bindsym m exec spotify                         ; mode "default"
 
@@ -247,21 +248,26 @@ mode "mouse" {
 
 bindsym $mod+t mode "mouse"
 
-bindsym XF86AudioPrev exec music.sh prev
-bindsym $mod+n exec music.sh prev
+bindsym XF86AudioPrev exec --no-startup-id music.sh prev
+bindsym $mod+n exec --no-startup-id music.sh prev
 
-bindsym XF86AudioPlay exec music.sh play
-bindsym $mod+m exec music.sh play
+bindsym XF86AudioPlay exec --no-startup-id music.sh play
+bindsym $mod+m exec --no-startup-id music.sh play
 
-bindsym XF86AudioNext exec music.sh next
-bindsym $mod+comma exec music.sh next
+bindsym XF86AudioNext exec --no-startup-id music.sh next
+bindsym $mod+comma exec --no-startup-id music.sh next
 
-exec --no-startup-id xset r rate 300 25
-exec --no-startup-id lappy.sh
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# maybe do this one at launch instead
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id xfce4-volumed
 exec --no-startup-id xfce4-clipman
-exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
+exec --no-startup-id dropbox start
+exec --no-startup-id xset r rate 300 25
+exec --no-startup-id xmodmap ~/dotfiles/xmodmap
+# exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
 
 
 # Don't show the title, just a border
@@ -280,7 +286,8 @@ exec --no-startup-id gnome-calculator
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  status_command ~/bin/i3-bar-wrapper.sh
+  # status_command ~/bin/i3-bar-wrapper.sh
+  status_command i3status
   tray_output primary
 
   colors {
