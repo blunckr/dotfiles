@@ -165,87 +165,87 @@ mode "$mode_launcher" {
 
 mode "mouse" {
 
-    # set your three speeds here
+  # set your three speeds here
 
-    set $slow 5
-    set $quick 50
-    set $fast 200
+  set $slow 5
+  set $quick 50
+  set $fast 200
 
-    # Mouse movement (quick/fine-tuned) -- vim keybindings
+  # Mouse movement (quick/fine-tuned) -- vim keybindings
 
-    bindsym h exec xdotool mousemove_relative -- -$quick 0
-    bindsym j exec xdotool mousemove_relative 0 $quick
-    bindsym k exec xdotool mousemove_relative -- 0 -$quick
-    bindsym l exec xdotool mousemove_relative $quick 0
+  bindsym h exec xdotool mousemove_relative -- -$quick 0
+  bindsym j exec xdotool mousemove_relative 0 $quick
+  bindsym k exec xdotool mousemove_relative -- 0 -$quick
+  bindsym l exec xdotool mousemove_relative $quick 0
 
-    # Mouse movement (quick/fine-tuned) -- arrow keys
+  # Mouse movement (quick/fine-tuned) -- arrow keys
 
-    bindsym Left exec xdotool mousemove_relative -- -$quick 0
-    bindsym Down exec xdotool mousemove_relative 0 $quick
-    bindsym Up exec xdotool mousemove_relative -- 0 -$quick
-    bindsym Right exec xdotool mousemove_relative $quick 0
+  bindsym Left exec xdotool mousemove_relative -- -$quick 0
+  bindsym Down exec xdotool mousemove_relative 0 $quick
+  bindsym Up exec xdotool mousemove_relative -- 0 -$quick
+  bindsym Right exec xdotool mousemove_relative $quick 0
 
-    # Mouse movement (fast) -- vim keybindings
+  # Mouse movement (fast) -- vim keybindings
 
-    bindsym Shift+h exec xdotool mousemove_relative -- -$fast 0
-    bindsym Shift+j exec xdotool mousemove_relative 0 $fast
-    bindsym Shift+k exec xdotool mousemove_relative -- 0 -$fast
-    bindsym Shift+l exec xdotool mousemove_relative $fast 0
+  bindsym Shift+h exec xdotool mousemove_relative -- -$fast 0
+  bindsym Shift+j exec xdotool mousemove_relative 0 $fast
+  bindsym Shift+k exec xdotool mousemove_relative -- 0 -$fast
+  bindsym Shift+l exec xdotool mousemove_relative $fast 0
 
-    # Mouse movement (fast) -- arrow keys
+  # Mouse movement (fast) -- arrow keys
 
-    bindsym Shift+Left exec xdotool mousemove_relative -- -$fast 0
-    bindsym Shift+Down exec xdotool mousemove_relative 0 $fast
-    bindsym Shift+Up exec xdotool mousemove_relative -- 0 -$fast
-    bindsym Shift+Right exec xdotool mousemove_relative $fast 0
+  bindsym Shift+Left exec xdotool mousemove_relative -- -$fast 0
+  bindsym Shift+Down exec xdotool mousemove_relative 0 $fast
+  bindsym Shift+Up exec xdotool mousemove_relative -- 0 -$fast
+  bindsym Shift+Right exec xdotool mousemove_relative $fast 0
 
-    # Mouse movement (slow) -- vim keybindings
+  # Mouse movement (slow) -- vim keybindings
 
-    bindsym Ctrl+h exec xdotool mousemove_relative -- -$slow 0
-    bindsym Ctrl+j exec xdotool mousemove_relative 0 $slow
-    bindsym Ctrl+k exec xdotool mousemove_relative -- 0 -$slow
-    bindsym Ctrl+l exec xdotool mousemove_relative $slow 0
+  bindsym Ctrl+h exec xdotool mousemove_relative -- -$slow 0
+  bindsym Ctrl+j exec xdotool mousemove_relative 0 $slow
+  bindsym Ctrl+k exec xdotool mousemove_relative -- 0 -$slow
+  bindsym Ctrl+l exec xdotool mousemove_relative $slow 0
 
-    # Mouse movement (slow) -- arrow keys
+  # Mouse movement (slow) -- arrow keys
 
-    bindsym Ctrl+Left exec xdotool mousemove_relative -- -$slow 0
-    bindsym Ctrl+Down exec xdotool mousemove_relative 0 $slow
-    bindsym Ctrl+Up exec xdotool mousemove_relative -- 0 -$slow
-    bindsym Ctrl+Right exec xdotool mousemove_relative $slow 0
+  bindsym Ctrl+Left exec xdotool mousemove_relative -- -$slow 0
+  bindsym Ctrl+Down exec xdotool mousemove_relative 0 $slow
+  bindsym Ctrl+Up exec xdotool mousemove_relative -- 0 -$slow
+  bindsym Ctrl+Right exec xdotool mousemove_relative $slow 0
 
-    # Left Click
-    bindsym f exec xdotool click 1
+  # Left Click
+  bindsym f exec xdotool click 1
 
-    # Middle Click
-    bindsym d exec xdotool click 2
+  # Middle Click
+  bindsym d exec xdotool click 2
 
-    # Right Click
-    bindsym s exec xdotool click 3
+  # Right Click
+  bindsym s exec xdotool click 3
 
-    # Left Click-and-drag
-    bindsym Shift+f exec xdotool mousedown 1
+  # Left Click-and-drag
+  bindsym Shift+f exec xdotool mousedown 1
 
-    # Middle Click-and-drag
-    bindsym Shift+d exec xdotool mousedown 2
+  # Middle Click-and-drag
+  bindsym Shift+d exec xdotool mousedown 2
 
-    # Right Click-and-drag
-    bindsym Shift+s exec xdotool mousedown 3
+  # Right Click-and-drag
+  bindsym Shift+s exec xdotool mousedown 3
 
-    # Left Drag release
-    bindsym Ctrl+f exec xdotool mouseup 1
+  # Left Drag release
+  bindsym Ctrl+f exec xdotool mouseup 1
 
-    # Middle Drag release
-    bindsym Ctrl+d exec xdotool mouseup 2
+  # Middle Drag release
+  bindsym Ctrl+d exec xdotool mouseup 2
 
-    # Right Drag release
-    bindsym Ctrl+s exec xdotool mouseup 3
+  # Right Drag release
+  bindsym Ctrl+s exec xdotool mouseup 3
 
 
-    # return to normal keybindings -- IMPORTANT!!
+  # return to normal keybindings -- IMPORTANT!!
 
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-    bindsym q mode "default"
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+  bindsym q mode "default"
 }
 
 bindsym $mod+t mode "mouse"
@@ -333,32 +333,32 @@ bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
   bindsym o      mode "$mode_gaps_outer"
-    bindsym i      mode "$mode_gaps_inner"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+  bindsym i      mode "$mode_gaps_inner"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 mode "$mode_gaps_inner" {
   bindsym plus  gaps inner current plus 5
-    bindsym minus gaps inner current minus 5
-    bindsym 0     gaps inner current set 0
+  bindsym minus gaps inner current minus 5
+  bindsym 0     gaps inner current set 0
 
-    bindsym Shift+plus  gaps inner all plus 5
-    bindsym Shift+minus gaps inner all minus 5
-    bindsym Shift+0     gaps inner all set 0
+  bindsym Shift+plus  gaps inner all plus 5
+  bindsym Shift+minus gaps inner all minus 5
+  bindsym Shift+0     gaps inner all set 0
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 mode "$mode_gaps_outer" {
   bindsym plus  gaps outer current plus 5
-    bindsym minus gaps outer current minus 5
-    bindsym 0     gaps outer current set 0
+  bindsym minus gaps outer current minus 5
+  bindsym 0     gaps outer current set 0
 
-    bindsym Shift+plus  gaps outer all plus 5
-    bindsym Shift+minus gaps outer all minus 5
-    bindsym Shift+0     gaps outer all set 0
+  bindsym Shift+plus  gaps outer all plus 5
+  bindsym Shift+minus gaps outer all minus 5
+  bindsym Shift+0     gaps outer all set 0
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
