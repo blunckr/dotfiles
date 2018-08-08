@@ -1,6 +1,7 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
+Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
 Plug 'dracula/vim'
 Plug 'jremmen/vim-ripgrep'
@@ -125,10 +126,14 @@ let g:dracula_colorterm = 0
 color dracula
 " highlight ALEWarning ctermbg=Red
 let g:ale_echo_cursor = 1
+" let g:ale_linters = {'javascript': ['eslint']}
+
+let g:vifm_term = 'xfce4-terminal -x'
+let g:vifm_exec_args = ''
 
 if has('gui_running')
   let $FZF_DEFAULT_COMMAND = 'rg --files'
-  set guifont=Terminus\ 14
+  set guifont=xos4\ Terminus\ Regular\ 14
   set guicursor+=a:blinkon0
   let g:dracula_colorterm = 1
   set background=dark

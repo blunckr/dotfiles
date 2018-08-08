@@ -121,3 +121,6 @@ _fzf_compgen_path() {
   rg --files
 }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export EDITOR=vim
+export VISUAL=vim

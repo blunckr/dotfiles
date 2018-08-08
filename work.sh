@@ -10,3 +10,5 @@ i3-msg move workspace to output dp-2
 
 i3-msg workspace 3
 i3-msg move workspace to output dp-1
+
+exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*

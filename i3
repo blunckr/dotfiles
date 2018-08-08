@@ -151,8 +151,8 @@ set $mode_launcher Launch: [c]hrome [i]ncognito g[v]im [t]hunar [d]beaver [g]itg
 bindsym $mod+semicolon mode "$mode_launcher"
 
 mode "$mode_launcher" {
-  bindsym c exec chromium-browser                ; mode "default"
-  bindsym i exec chromium-browser --incognito    ; mode "default"
+  bindsym c exec chromium                        ; mode "default"
+  bindsym i exec chromium --incognito            ; mode "default"
   bindsym v exec program-at-path.sh gvim         ; mode "default"
   bindsym t exec program-at-path.sh thunar       ; mode "default"
   bindsym d exec dbeaver                         ; mode "default"
@@ -167,7 +167,7 @@ mode "mouse" {
 
     # set your three speeds here
 
-    set $slow 1
+    set $slow 5
     set $quick 50
     set $fast 200
 
@@ -225,7 +225,7 @@ mode "mouse" {
     # Left Click-and-drag
     bindsym Shift+f exec xdotool mousedown 1
 
-    # Middle Click-and-drag 
+    # Middle Click-and-drag
     bindsym Shift+d exec xdotool mousedown 2
 
     # Right Click-and-drag
@@ -244,6 +244,8 @@ mode "mouse" {
     # return to normal keybindings -- IMPORTANT!!
 
     bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym q mode "default"
 }
 
 bindsym $mod+t mode "mouse"
@@ -261,12 +263,18 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
+bindsym XF86Display exec --no-startup-id arandr
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
+
 # maybe do this one at launch instead
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xfce4-clipman
 exec --no-startup-id dropbox start
 exec --no-startup-id xset r rate 300 25
 exec --no-startup-id xmodmap ~/dotfiles/xmodmap
+exec --no-startup-id sct 6000
+exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
+
 # exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
 
 
@@ -311,3 +319,46 @@ client.urgent           #2f343a #ff5555 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
+
+# GAPS
+for_window [class="^.*"] border pixel 2
+gaps inner 10
+gaps outer 0
+smart_borders on
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+  bindsym o      mode "$mode_gaps_outer"
+    bindsym i      mode "$mode_gaps_inner"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+  bindsym plus  gaps inner current plus 5
+    bindsym minus gaps inner current minus 5
+    bindsym 0     gaps inner current set 0
+
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     gaps inner all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+  bindsym plus  gaps outer current plus 5
+    bindsym minus gaps outer current minus 5
+    bindsym 0     gaps outer current set 0
+
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     gaps outer all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
