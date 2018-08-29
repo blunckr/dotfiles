@@ -1,6 +1,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -22,7 +23,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run -l 10
 bindsym $mod+d exec rofi -show run
-bindsym $mod+Tab exec rofi -show window
+bindsym $alt+Tab exec rofi -show window
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+c exec xfce4-popup-clipman
 
@@ -259,9 +260,9 @@ bindsym $mod+m exec --no-startup-id music.sh play
 bindsym XF86AudioNext exec --no-startup-id music.sh next
 bindsym $mod+comma exec --no-startup-id music.sh next
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle
 
 bindsym XF86Display exec --no-startup-id arandr
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
@@ -272,8 +273,9 @@ exec --no-startup-id xfce4-clipman
 exec --no-startup-id dropbox start
 exec --no-startup-id xset r rate 300 25
 exec --no-startup-id xmodmap ~/dotfiles/xmodmap
-exec --no-startup-id sct 6000
+exec --no-startup-id sct 5500
 exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
+exec --no-startup-id compton -b
 
 # exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
 
@@ -297,6 +299,7 @@ bar {
   # status_command ~/bin/i3-bar-wrapper.sh
   status_command i3status
   tray_output primary
+  position top
 
   colors {
     background #000000

@@ -8,6 +8,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
+Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline-themes'
@@ -27,6 +28,7 @@ set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set modeline
+set nohlsearch
 " set mouse=a
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -67,7 +69,7 @@ set textwidth=80
 set colorcolumn=+1
 
 " Numbers
-" set number
+set number
 " set numberwidth=1
 
 " Tab completion
@@ -116,14 +118,19 @@ let g:airline#extensions#tabline#enabled = 1
 " number buffers
 " let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'gruvbox'
 let g:airline_section_y = ''
 let g:airline_skip_empty_sections=1
 
 set t_Co=256
 let g:dracula_italic = 0
 let g:dracula_colorterm = 0
-color dracula
+" color dracula
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
+set background=dark
+" allows transparency
+highlight Normal ctermbg=None
 " highlight ALEWarning ctermbg=Red
 let g:ale_echo_cursor = 1
 " let g:ale_linters = {'javascript': ['eslint']}
