@@ -5,6 +5,8 @@ if [ -f /tmp/pwd ]
 then
     case $program in
     xfce4-terminal ) arg="--working-directory" ;;
+    alacritty ) arg="--working-directory" ;;
+    kitty ) arg="--directory" ;;
     * ) arg="" ;;
     esac
 

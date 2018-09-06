@@ -132,11 +132,17 @@ set background=dark
 " allows transparency
 highlight Normal ctermbg=None
 " highlight ALEWarning ctermbg=Red
-let g:ale_echo_cursor = 1
+" let g:ale_echo_cursor = 1
 " let g:ale_linters = {'javascript': ['eslint']}
 
 let g:vifm_term = 'xfce4-terminal -x'
 let g:vifm_exec_args = ''
+
+let g:fzf_files_options= '--preview "bat --color \"always\" {} 2> /dev/null"'
+let g:fzf_layout = { 'down': '~90%' }
+
+" for gitgutter to update more quickly
+set updatetime=100
 
 if has('gui_running')
   let $FZF_DEFAULT_COMMAND = 'rg --files'

@@ -5,7 +5,7 @@ set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:xos4 Terminus 14
+font pango: Fira Code 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -15,7 +15,7 @@ font pango:xos4 Terminus 14
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
+bindsym $mod+Return exec $HOME/bin/program-at-path.sh kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
