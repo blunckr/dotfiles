@@ -270,7 +270,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 # maybe do this one at launch instead
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xfce4-clipman
-exec --no-startup-id dropbox start
+# exec --no-startup-id dropbox start
 exec --no-startup-id xset r rate 300 25
 exec --no-startup-id xmodmap ~/dotfiles/xmodmap
 exec --no-startup-id sct 5500

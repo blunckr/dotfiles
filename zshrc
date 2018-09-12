@@ -60,7 +60,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,6 +104,7 @@ function ssht() {
 }
 
 alias retag="rg --files | ctags -L-"
+alias ssh="TERM=xterm-256color ssh"
 
 # export EDITOR="/usr/local/bin/vim"
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
@@ -121,6 +122,15 @@ _fzf_compgen_path() {
   rg --files
 }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\033' edit-command-line # esc to edit current line
+
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
 
 export EDITOR=vim
 export VISUAL=vim
