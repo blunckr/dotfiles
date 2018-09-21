@@ -275,7 +275,7 @@ exec --no-startup-id xset r rate 300 25
 exec --no-startup-id xmodmap ~/dotfiles/xmodmap
 exec --no-startup-id sct 5500
 exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
-exec --no-startup-id compton -b
+# exec --no-startup-id compton -b
 
 # exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
 
@@ -325,9 +325,9 @@ client.background       #ffffff
 
 # GAPS
 for_window [class="^.*"] border pixel 2
-gaps inner 10
-gaps outer 0
-smart_borders on
+# gaps inner 10
+# gaps outer 0
+# smart_borders on
 
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)

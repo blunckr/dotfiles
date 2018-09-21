@@ -1,7 +1,6 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-css-color'
 Plug 'bling/vim-airline'
 Plug 'dracula/vim'
 Plug 'jremmen/vim-ripgrep'
@@ -29,6 +28,7 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set modeline
 set nohlsearch
+set clipboard=unnamedplus
 " set mouse=a
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -134,6 +134,7 @@ highlight Normal ctermbg=None
 " highlight ALEWarning ctermbg=Red
 " let g:ale_echo_cursor = 1
 " let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_sign_column_always = 1
 
 let g:vifm_term = 'xfce4-terminal -x'
 let g:vifm_exec_args = ''
