@@ -139,7 +139,6 @@ let g:ale_sign_column_always = 1
 let g:vifm_term = 'xfce4-terminal -x'
 let g:vifm_exec_args = ''
 
-let g:fzf_files_options= '--preview "bat --color \"always\" {} 2> /dev/null"'
 let g:fzf_layout = { 'down': '~90%' }
 
 " for gitgutter to update more quickly

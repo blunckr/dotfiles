@@ -279,20 +279,6 @@ exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
 
 # exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
 
-
-# Don't show the title, just a border
-for_window [title="^SCRATCHTERM$"] border pixel 1
-for_window [title="^SCRATCHTERM$"] move to scratchpad
-exec --no-startup-id xfce4-terminal -T SCRATCHTERM
-
-bindsym $mod+Shift+Return [title="^SCRATCHTERM$"] scratchpad show
-
-for_window [title="^gnome-calculator$"] move to scratchpad
-bindsym XF86Calculator [title="^gnome-calculator$"] scratchpad show
-bindsym $mod+y [title="^gnome-calculator$"] scratchpad show
-exec --no-startup-id gnome-calculator
-
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {

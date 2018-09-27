@@ -132,5 +132,7 @@ compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
+alias cat=bat
+
 export EDITOR=vim
 export VISUAL=vim
