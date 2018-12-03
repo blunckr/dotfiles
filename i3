@@ -5,7 +5,7 @@ set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Fira Code 14
+font pango: Fira Code 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -15,7 +15,7 @@ font pango: Fira Code 14
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $HOME/bin/program-at-path.sh kitty
+bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -275,7 +275,7 @@ exec --no-startup-id xset r rate 300 25
 exec --no-startup-id xmodmap ~/dotfiles/xmodmap
 exec --no-startup-id sct 5500
 exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
-# exec --no-startup-id compton -b
+# exec --no-startup-id compton -b --no-fading-openclose
 
 # exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
 

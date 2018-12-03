@@ -104,7 +104,7 @@ function ssht() {
 }
 
 alias retag="rg --files | ctags -L-"
-alias ssh="TERM=xterm-256color ssh"
+# alias ssh="TERM=xterm-256color ssh"
 
 # export EDITOR="/usr/local/bin/vim"
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
@@ -133,6 +133,7 @@ compinit
 kitty + complete setup zsh | source /dev/stdin
 
 alias cat=bat
+alias sys=systemctl
 
 export EDITOR=vim
 export VISUAL=vim

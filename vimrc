@@ -9,6 +9,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
@@ -28,7 +30,7 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set modeline
 set nohlsearch
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 " set mouse=a
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -86,6 +88,8 @@ function! InsertTabWrapper()
 endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
+" C-h is backspace, so this makes sense
+inoremap <C-l> <del>
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -116,11 +120,11 @@ let g:NERDSpaceDelims = 1
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " number buffers
-" let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme = 'gruvbox'
 let g:airline_section_y = '' " encoding
 let g:airline_skip_empty_sections=1
+let g:airline_theme = 'bubblegum'
 
 set t_Co=256
 let g:dracula_italic = 0
@@ -139,7 +143,7 @@ let g:ale_sign_column_always = 1
 let g:vifm_term = 'xfce4-terminal -x'
 let g:vifm_exec_args = ''
 
-let g:fzf_layout = { 'down': '~90%' }
+let g:fzf_layout = { 'down': '~30%' }
 
 " for gitgutter to update more quickly
 set updatetime=100
@@ -182,7 +186,7 @@ map <Leader>l <C-w>l
 abbr jlog console.log
 abbr epry require IEx; IEx.pry
 abbr rpry require 'pry'; binding.pry
-
+" decamelize
 let @c = "0f_x~@c"
 
 " 4 spaces for shell scripts

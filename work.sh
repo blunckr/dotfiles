@@ -9,6 +9,9 @@ xrandr \
 xset r rate 300 25
 xmodmap ~/dotfiles/xmodmap
 
+i3-msg workspace 1
+i3-msg move workspace to output edp-1
+
 i3-msg workspace 2
 i3-msg move workspace to output dp-1
 
