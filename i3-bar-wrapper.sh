@@ -1,6 +1,7 @@
 #!/bin/bash
 sections="[]"
 function set_sections {
+    any_players=$(playerctl --list-all | wc -l)
     if cmus-remote -C
     then
         artist=$(cmus-remote -Q | sed -n "s/^tag artist \(.*\)/\1/p")
@@ -11,9 +12,9 @@ function set_sections {
         read -r artist < /tmp/pianobar-artist
         read -r song < /tmp/pianobar-song
         text="$artist - $song"
-    elif pidof spotify
+    elif [ $any_players != 0 ]
     then
-        text=$(spotifycli --status)
+        text="$(playerctl metadata title) - $(playerctl metadata artist)"
         # " - The Home Depot"
         # pacmd list-sink-inputs
         # pactl set-sink-input-mute 54 false

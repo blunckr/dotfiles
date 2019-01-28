@@ -5,7 +5,7 @@ set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Fira Code 12
+font pango: xos4 Terminus Regular 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -282,8 +282,8 @@ exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  # status_command ~/bin/i3-bar-wrapper.sh
-  status_command i3status
+  status_command ~/dotfiles/i3-bar-wrapper.sh
+  # status_command i3status
   tray_output primary
   position top
 
@@ -310,7 +310,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 # GAPS
-for_window [class="^.*"] border pixel 2
+# for_window [class="^.*"] border pixel 2
 # gaps inner 10
 # gaps outer 0
 # smart_borders on
