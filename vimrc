@@ -2,13 +2,13 @@
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
-Plug 'dracula/vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
+Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -119,12 +119,13 @@ let g:NERDSpaceDelims = 1
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-" number buffers
 let g:airline_powerline_fonts = 1
+" number buffers
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_section_y = '' " encoding
 let g:airline_skip_empty_sections=1
 let g:airline_theme = 'bubblegum'
+let g:airline#extensions#ale#enabled = 0
 
 set t_Co=256
 let g:dracula_italic = 0
@@ -177,6 +178,7 @@ map <Leader>l :w \| !love .<CR>
 map <Leader>h :noh<CR>
 map <C-p> :Files<CR>
 map <leader>p :Buffers<CR>
+map <leader>f :ALEFix<CR>
 
 map <Leader>h <C-w>h
 map <Leader>j <C-w>j

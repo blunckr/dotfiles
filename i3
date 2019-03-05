@@ -5,7 +5,7 @@ set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: xos4 Terminus Regular 8
+font pango: Ubuntu Regular 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -16,14 +16,15 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
+bindsym $mod+t exec chromium
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run -l 10
-bindsym $mod+d exec rofi -show run
-bindsym $alt+Tab exec rofi -show window
+bindsym $mod+d exec rofi -show run -sidebar-mode
+bindsym $alt+Tab exec rofi -show window -show-icons -sidebar-mode
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+c exec xfce4-popup-clipman
 
@@ -73,6 +74,13 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -249,7 +257,7 @@ mode "mouse" {
   bindsym q mode "default"
 }
 
-bindsym $mod+t mode "mouse"
+bindsym $mod+Shift+t mode "mouse"
 
 bindsym XF86AudioPrev exec --no-startup-id music.sh prev
 bindsym $mod+n exec --no-startup-id music.sh prev
@@ -303,7 +311,7 @@ bar {
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #6272a4 #ffffff #8be9fd   #285577
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.unfocused        #999999 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #ff5555 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
