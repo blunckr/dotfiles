@@ -1,4 +1,5 @@
 #!/bin/bash
+ln -sf ~/dotfiles/ftplugin ~/.vim/ftplugin
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/home.sh ~/bin/home.sh
 ln -sf ~/dotfiles/i3 ~/.config/i3/config

@@ -1,7 +1,7 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -12,7 +12,7 @@ Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 call plug#end()
 " Leader
@@ -165,11 +165,7 @@ let s:uname = system("echo -n \"$(uname)\"")
 if s:uname == "Darwin"
 endif
 
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-" auto-trim whitespace
-" autocmd BufWritePre * %s/\s\+$//e
+" time whitespace
 command! Trim :%s/\s\+$//e
 
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
