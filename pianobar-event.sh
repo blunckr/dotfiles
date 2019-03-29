@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# add this to pianobar config
+#   event_command = ~/dotfiles/pianobar-event.sh
+
 # create variables
 while read L; do
     k="`echo "$L" | cut -d '=' -f 1`"

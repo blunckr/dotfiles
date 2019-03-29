@@ -23,32 +23,15 @@ set nobackup
 set nowritebackup
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set history=200
-set ruler         " show the cursor position all the time
+" set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set modeline
-set nohlsearch
-" set clipboard=unnamedplus
-" set mouse=a
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-endif
+set hlsearch
 
 filetype plugin indent on
-
-augroup vimrcEx
-  autocmd!
-
-  " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
-augroup END
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
 " shell for syntax highlighting purposes.
@@ -72,7 +55,6 @@ set colorcolumn=+1
 
 " Numbers
 set number
-" set numberwidth=1
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -101,48 +83,19 @@ set diffopt+=vertical
 set ignorecase " case insensitive search
 set smartcase " adding a capital letter makes it case sensitive
 set hidden " leave a file with unwritten changes
-" set hlsearch " highlight all matching searches
-" set rnu " relative line numbers
 set wildmenu
-" set wildignore+=**/node_modules/**
-" set wildignore+=**/tmp/**
-" set wildignore+=**/bower_components/**
-" set wildignore+=**/deps/**
-" set wildignore+=**/_build/**
-set path+=** " poor mans fuzzy find
 " prevent auto hard wraps
 set fo-=t
 
-let NERDTreeShowHidden=1
-
-let g:NERDSpaceDelims = 1
-
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-" number buffers
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_section_y = '' " encoding
-let g:airline_skip_empty_sections=1
-let g:airline_theme = 'bubblegum'
-let g:airline#extensions#ale#enabled = 0
-
 set t_Co=256
-let g:dracula_italic = 0
-let g:dracula_colorterm = 0
-" color dracula
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 set background=dark
 " allows transparency
 highlight Normal ctermbg=None
-" highlight ALEWarning ctermbg=Red
-" let g:ale_echo_cursor = 1
-" let g:ale_linters = {'javascript': ['eslint']}
 let g:ale_sign_column_always = 1
 
-let g:vifm_term = 'xfce4-terminal -x'
-let g:vifm_exec_args = ''
+" let g:vifm_term = 'xfce4-terminal -e='
 
 let g:fzf_layout = { 'down': '~30%' }
 
@@ -155,14 +108,7 @@ if has('gui_running')
   set guicursor+=a:blinkon0
   let g:dracula_colorterm = 1
   set background=dark
-endif
-if has('gui_macvim')
-  set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h16
-  " Don't show pop-ups when files change etc.
-  set guioptions+=c
-endif
-let s:uname = system("echo -n \"$(uname)\"")
-if s:uname == "Darwin"
+  " let g:vifm_embed_term = 1
 endif
 
 " time whitespace
@@ -171,7 +117,7 @@ command! Trim :%s/\s\+$//e
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 map <Leader>l :w \| !love .<CR>
 " clear highlights
-map <Leader>h :noh<CR>
+map <Leader>s :noh<CR>
 map <C-p> :Files<CR>
 map <leader>p :Buffers<CR>
 map <leader>f :ALEFix<CR>
@@ -180,6 +126,8 @@ map <Leader>h <C-w>h
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
+
+map <Leader>g :!tig status<CR>
 
 abbr jlog console.log
 abbr epry require IEx; IEx.pry

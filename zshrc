@@ -133,7 +133,7 @@ compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
-alias cat=bat
+# alias cat=bat
 alias sys=systemctl
 
 export EDITOR=vim
