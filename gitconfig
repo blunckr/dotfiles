@@ -5,6 +5,7 @@ name = Ryker Blunck
 email = rykerblunck@gmail.com
 [push]
 	default = matching
+	followTags = true
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f

@@ -1,18 +1,16 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-" Plug 'bling/vim-airline'
+Plug 'flazz/vim-colorschemes'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
-Plug 'morhetz/gruvbox'
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot', { 'tag': 'v3.7.0' } " graphql was removed after this
 Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 call plug#end()
 " Leader
@@ -88,9 +86,8 @@ set wildmenu
 set fo-=t
 
 set t_Co=256
-let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
-set background=dark
+colorscheme earendel
+" set background=dark
 " allows transparency
 highlight Normal ctermbg=None
 let g:ale_sign_column_always = 1
@@ -128,14 +125,17 @@ map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 
 map <Leader>g :!tig status<CR>
+map <Leader>i :setlocal foldmethod=indent<CR>
 
 abbr jlog console.log
 abbr epry require IEx; IEx.pry
 abbr rpry require 'pry'; binding.pry
 " decamelize
 let @c = "0f_x~@c"
+let @p = "iputs 'vvvvvvvv'puts '^^^^^^^^'€ýaOpp "
 
 " 4 spaces for shell scripts
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4
 autocmd FileType go setlocal noexpandtab nolist
+autocmd FileType make setlocal noexpandtab nolist
 

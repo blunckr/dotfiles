@@ -60,7 +60,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-completions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -128,13 +128,18 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\033' edit-command-line # esc to edit current line
 
-autoload -Uz compinit
-compinit
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+autoload -U compinit && compinit # autocomplete
 
 # alias cat=bat
 alias sys=systemctl
 
 export EDITOR=vim
 export VISUAL=vim
+
+# (cat ~/.cache/wal/sequences &)
+
+if [[ $1 == eval ]]
+then
+  "$@"
+  set --
+fi
