@@ -1,6 +1,8 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
+" Plug 'dylanaraps/wal.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'flazz/vim-colorschemes'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -67,7 +69,9 @@ function! InsertTabWrapper()
     endif
 endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
+" Shift-Tab inserts a real Tab character
+inoremap <S-Tab> <C-V><Tab>
+
 " C-h is backspace, so this makes sense
 inoremap <C-l> <del>
 
@@ -86,10 +90,15 @@ set wildmenu
 set fo-=t
 
 set t_Co=256
-colorscheme earendel
-" set background=dark
+" let g:jellybeans_overrides = {
+" \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+" \}
+" if has('termguicolors') && &termguicolors
+"     let g:jellybeans_overrides['background']['guibg'] = 'none'
+" endif
+colorscheme badwolf
+set background=dark
 " allows transparency
-highlight Normal ctermbg=None
 let g:ale_sign_column_always = 1
 
 " let g:vifm_term = 'xfce4-terminal -e='
@@ -125,6 +134,7 @@ map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 
 map <Leader>g :!tig status<CR>
+map <Leader>c :!git commit -v<CR>
 map <Leader>i :setlocal foldmethod=indent<CR>
 
 abbr jlog console.log

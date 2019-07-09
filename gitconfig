@@ -18,6 +18,7 @@ email = rykerblunck@gmail.com
 	co = checkout
 [core]
 	editor = /usr/bin/vim
+	excludesfile = /home/ryker/.gitignore
 [diff]
 	tool = vimdiff
 [difftool]

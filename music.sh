@@ -18,8 +18,8 @@ then
 elif [ $any_players != 0 ]
 then
     case $1 in
-        prev) playerctl previous;;
-        play) playerctl play-pause;;
-        next) playerctl next;;
+        prev) playerctl -p spotify previous;;
+        play) playerctl -p spotify play-pause;;
+        next) playerctl -p spotify next;;
     esac
 fi
