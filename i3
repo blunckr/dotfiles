@@ -15,7 +15,7 @@ font pango: Ubuntu Regular 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
+bindsym $mod+Return exec $HOME/bin/program-at-path.sh kitty
 bindsym $mod+t exec chromium
 
 # kill focused window
@@ -281,7 +281,7 @@ exec --no-startup-id xfce4-clipman
 # exec --no-startup-id dropbox start
 exec --no-startup-id xset r rate 300 25
 exec --no-startup-id xmodmap ~/dotfiles/xmodmap
-exec --no-startup-id sct 5500
+exec --no-startup-id redshift -O 3500
 exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
 # exec --no-startup-id compton -b --no-fading-openclose
 

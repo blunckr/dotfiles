@@ -143,3 +143,7 @@ then
   "$@"
   set --
 fi
+
+alias ssh="TERM=xterm-256color ssh"
+
+eval $(thefuck --alias f)

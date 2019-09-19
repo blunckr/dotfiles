@@ -1,9 +1,9 @@
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
+Plug 'chriskempson/base16-vim'
 " Plug 'dylanaraps/wal.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'flazz/vim-colorschemes'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -30,6 +30,7 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set modeline
 set hlsearch
+" let &t_ut='' " this fixes the background in kitty somehow
 
 filetype plugin indent on
 
@@ -54,7 +55,7 @@ set textwidth=80
 set colorcolumn=+1
 
 " Numbers
-set number
+" set number
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -76,8 +77,8 @@ inoremap <S-Tab> <C-V><Tab>
 inoremap <C-l> <del>
 
 " Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
+" set splitbelow
+" set splitright
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -96,10 +97,10 @@ set t_Co=256
 " if has('termguicolors') && &termguicolors
 "     let g:jellybeans_overrides['background']['guibg'] = 'none'
 " endif
-colorscheme badwolf
-set background=dark
+colorscheme base16-default-dark
 " allows transparency
 let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
 
 " let g:vifm_term = 'xfce4-terminal -e='
 
@@ -110,7 +111,7 @@ set updatetime=100
 
 if has('gui_running')
   let $FZF_DEFAULT_COMMAND = 'rg --files'
-  set guifont=xos4\ Terminus\ Regular\ 14
+  " set guifont=xos4\ Terminus\ Regular\ 14
   set guicursor+=a:blinkon0
   let g:dracula_colorterm = 1
   set background=dark
@@ -136,6 +137,7 @@ map <Leader>l <C-w>l
 map <Leader>g :!tig status<CR>
 map <Leader>c :!git commit -v<CR>
 map <Leader>i :setlocal foldmethod=indent<CR>
+map <Leader>t :term<CR>
 
 abbr jlog console.log
 abbr epry require IEx; IEx.pry
