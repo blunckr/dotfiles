@@ -8,7 +8,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
-Plug 'sheerun/vim-polyglot', { 'tag': 'v3.7.0' } " graphql was removed after this
+Plug 'sheerun/vim-polyglot' " { 'tag': 'v3.7.0' } graphql was removed after this
 Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -30,6 +30,7 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set modeline
 set hlsearch
+set scrolloff=3   " Context lines above and below cursor
 " let &t_ut='' " this fixes the background in kitty somehow
 
 filetype plugin indent on
@@ -101,6 +102,7 @@ colorscheme base16-default-dark
 " allows transparency
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
+let g:ale_completion_enabled = 1
 
 " let g:vifm_term = 'xfce4-terminal -e='
 
