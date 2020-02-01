@@ -2,13 +2,14 @@
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
-" Plug 'dylanaraps/wal.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-user'
 Plug 'mattn/emmet-vim'
-Plug 'sheerun/vim-polyglot' " { 'tag': 'v3.7.0' } graphql was removed after this
+Plug 'sheerun/vim-polyglot'
 Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -91,7 +92,6 @@ set wildmenu
 " prevent auto hard wraps
 set fo-=t
 
-set t_Co=256
 " let g:jellybeans_overrides = {
 " \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
 " \}
@@ -99,10 +99,13 @@ set t_Co=256
 "     let g:jellybeans_overrides['background']['guibg'] = 'none'
 " endif
 colorscheme base16-default-dark
+" set t_Co=256
+" let base16colorspace=256
+set termguicolors
 " allows transparency
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1
 
 " let g:vifm_term = 'xfce4-terminal -e='
 

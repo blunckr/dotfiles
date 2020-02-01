@@ -13,5 +13,5 @@ keysym l = l L Right NoSymbol lstroke Lstroke
 
 keysym a = a A Escape A a A
 
-keycode 34 = bracketleft braceleft Escape braceleft bracketleft braceleft
+! keycode 34 = bracketleft braceleft Escape braceleft bracketleft braceleft
 keycode 65 = space NoSymbol Return

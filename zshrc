@@ -60,7 +60,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions zsh-syntax-highlighting)
+plugins=(git zsh-completions zsh-syntax-highlighting docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -124,9 +124,9 @@ _fzf_compgen_path() {
 }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '\033' edit-command-line # esc to edit current line
+# autoload -U edit-command-line
+# zle -N edit-command-line
+# bindkey '\033' edit-command-line # esc to edit current line
 
 autoload -U compinit && compinit # autocomplete
 
@@ -144,6 +144,6 @@ then
   set --
 fi
 
-alias ssh="TERM=xterm-256color ssh"
+# alias ssh="TERM=xterm-256color ssh"
 
 eval $(thefuck --alias f)

@@ -15,8 +15,8 @@ font pango: Ubuntu Regular 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $HOME/bin/program-at-path.sh kitty
-bindsym $mod+t exec chromium
+bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
+bindsym $mod+t exec firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -24,7 +24,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run -l 10
 bindsym $mod+d exec rofi -show run -sidebar-mode
-bindsym $alt+Tab exec rofi -show window -show-icons -sidebar-mode
+bindsym $mod+Tab exec rofi -show window -show-icons -sidebar-mode
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+c exec xfce4-popup-clipman
 
@@ -160,8 +160,8 @@ set $mode_launcher Launch: [c]hrome [i]ncognito g[v]im [t]hunar [d]beaver [g]itg
 bindsym $mod+semicolon mode "$mode_launcher"
 
 mode "$mode_launcher" {
-  bindsym c exec chromium                        ; mode "default"
-  bindsym i exec chromium --incognito            ; mode "default"
+  bindsym c exec firefox                         ; mode "default"
+  bindsym i exec firefox --private-window        ; mode "default"
   bindsym v exec program-at-path.sh gvim         ; mode "default"
   bindsym t exec program-at-path.sh thunar       ; mode "default"
   bindsym d exec dbeaver                         ; mode "default"
@@ -283,6 +283,7 @@ exec --no-startup-id xset r rate 300 25
 exec --no-startup-id xmodmap ~/dotfiles/xmodmap
 exec --no-startup-id redshift -O 3500
 exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
+exec --no-startup-id alttab -d 1
 # exec --no-startup-id compton -b --no-fading-openclose
 
 # exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
