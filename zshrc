@@ -133,6 +133,7 @@ autoload -U compinit && compinit # autocomplete
 # alias cat=bat
 alias sys=systemctl
 
+export TERMINAL=xfce4-terminal
 export EDITOR=vim
 export VISUAL=vim
 
@@ -143,7 +144,3 @@ then
   "$@"
   set --
 fi
-
-# alias ssh="TERM=xterm-256color ssh"
-
-eval $(thefuck --alias f)
