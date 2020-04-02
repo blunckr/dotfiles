@@ -152,8 +152,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 for_window [class="Pavucontrol"] floating enable
+for_window [class="Arandr"] floating enable
 
-set $mode_launcher [1]lappy [2]ome [3]work [4]mirror [a]udio [q]logout [s]leep [l]ock [p]oweroff
+set $mode_launcher [1]lappy [2]ome [3]work [4]mirror [a]udio [d]isplays [q]logout [s]leep [l]ock [p]oweroff
 bindsym $mod+semicolon mode "$mode_launcher"
 
 mode "$mode_launcher" {
@@ -161,6 +162,7 @@ mode "$mode_launcher" {
   bindsym 2 exec home.sh                         ; mode "default"
   bindsym 3 exec work.sh                         ; mode "default"
   bindsym a exec pavucontrol                     ; mode "default"
+  bindsym d exec arandr                          ; mode "default"
   bindsym l exec xflock4                         ; mode "default"
   bindsym p exec poweroff                        ; mode "default"
   bindsym q exec xfce4-session-logout            ; mode "default"

@@ -3,16 +3,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'jceb/vim-orgmode'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-user'
 Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 call plug#end()
@@ -125,6 +123,7 @@ endif
 
 " time whitespace
 command! Trim :%s/\s\+$//e
+command! Gblame :execute("!tig blame % +") . line(".")
 
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 map <Leader>l :w \| !love .<CR>
@@ -147,6 +146,7 @@ map <Leader>t :term<CR>
 abbr jlog console.log
 abbr epry require IEx; IEx.pry
 abbr rpry require 'pry'; binding.pry
+abbr eecho >&2 echo
 " decamelize
 let @c = "0f_x~@c"
 let @p = "iputs 'vvvvvvvv'puts '^^^^^^^^'€ýaOpp "
