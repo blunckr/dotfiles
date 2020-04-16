@@ -5,7 +5,7 @@ set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Ubuntu Regular 12
+font pango: Hack Regular 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -16,16 +16,14 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
-bindsym $mod+t exec firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run -l 10
 bindsym $mod+d exec rofi -show run -sidebar-mode
+bindsym $mod+Shift+d exec xfce4-appfinder
 bindsym $mod+Tab exec rofi -show window -show-icons -sidebar-mode
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+c exec xfce4-popup-clipman
 
 # change focus
@@ -124,11 +122,9 @@ bindsym $mod+Shift+0 move container to workspace number 10
 bindsym $mod+p exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c exec "cat .config/i3/colors .config/i3/base > .config/i3/config && i3-msg reload"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -156,17 +152,55 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $mode_launcher Launch: [c]hrome [i]ncognito g[v]im [t]hunar [d]beaver [g]itg [s]lack [m]spotify
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Arandr"] floating enable
+
+set $mode_launcher [a]udio [d]isplays s[e]ttings [q]logout [s]leep [l]ock [p]oweroff
 bindsym $mod+semicolon mode "$mode_launcher"
 
 mode "$mode_launcher" {
-  bindsym c exec firefox                         ; mode "default"
-  bindsym i exec firefox --private-window        ; mode "default"
-  bindsym v exec program-at-path.sh gvim         ; mode "default"
-  bindsym t exec program-at-path.sh thunar       ; mode "default"
-  bindsym d exec dbeaver                         ; mode "default"
-  bindsym s exec slack                           ; mode "default"
-  bindsym m exec spotify                         ; mode "default"
+  bindsym e exec xfce4-settings-manager          ; mode "default"
+  bindsym l exec xflock4                         ; mode "default"
+  bindsym p exec poweroff                        ; mode "default"
+  bindsym q exec xfce4-session-logout            ; mode "default"
+  bindsym s exec xfce4-session-logout -s         ; mode "default"
+
+  bindsym a mode "$mode_audio"
+  bindsym d mode "$mode_displays"
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+
+set $mode_displays [c]ustom [l]appy [h]ome [w]ork
+mode "$mode_displays" {
+  bindsym c exec arandr                          ; mode "default"
+  bindsym h exec home.sh                         ; mode "default"
+  bindsym l exec lappy.sh                        ; mode "default"
+  bindsym w exec work.sh                         ; mode "default"
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+
+set $mode_audio [c]ustom [h]dmi [l]appy
+mode "$mode_audio" {
+  bindsym c exec pavucontrol                     ; mode "default"
+  bindsym l exec pactl set-card-profile 0 output:analog-stereo+input:analog-stereo; mode "default"
+  bindsym h exec pactl set-card-profile 0 output:hdmi-stereo-extra1; mode "default"
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+
+set $mode_color [x]off [j]down [k]up [u]reset
+bindsym $mod+o mode "$mode_color"
+
+mode "$mode_color" {
+  bindsym x exec --no-startup-id temp.sh off
+  bindsym j exec --no-startup-id temp.sh down
+  bindsym k exec --no-startup-id temp.sh up
+  bindsym u exec --no-startup-id temp.sh
 
   bindsym Escape mode "default"
   bindsym Return mode "default"
@@ -257,7 +291,7 @@ mode "mouse" {
   bindsym q mode "default"
 }
 
-bindsym $mod+Shift+t mode "mouse"
+bindsym $mod+t mode "mouse"
 
 bindsym XF86AudioPrev exec --no-startup-id music.sh prev
 bindsym $mod+n exec --no-startup-id music.sh prev
@@ -271,92 +305,39 @@ bindsym $mod+comma exec --no-startup-id music.sh next
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-
-bindsym XF86Display exec --no-startup-id arandr
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-# maybe do this one at launch instead
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id xfce4-clipman
-# exec --no-startup-id dropbox start
-exec --no-startup-id xset r rate 300 25
-exec --no-startup-id xmodmap ~/dotfiles/xmodmap
-exec --no-startup-id redshift -O 3500
-exec --no-startup-id feh --randomize --bg-fill ~/wallpapers/*
+bindsym XF86Display exec --no-startup-id arandr
+
+exec --no-startup-id temp.sh
 exec --no-startup-id alttab -d 1
-# exec --no-startup-id compton -b --no-fading-openclose
 
-# exec --no-startup-id feh --bg-scale wallpaper/animal-collective.jpg
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Basic bar configuration using the Base16 variables.
 bar {
-  # status_command ~/dotfiles/i3-bar-wrapper.sh
-  status_command i3status
-  tray_output primary
-  position top
+    status_command i3status
+    tray_output primary
+    position top
 
-  colors {
-    background #000000
-    statusline #ffffff
-    separator #666666
+    colors {
+        background $base00
+        separator  $base01
+        statusline $base04
 
-    focused_workspace  #4c7899 #6272a4 #ffffff
-    active_workspace   #333333 #5f676a #ffffff
-    inactive_workspace #333333 #222222 #888888
-    urgent_workspace   #2f343a #ff5555 #ffffff
-    binding_mode       #2f343a #900000 #ffffff
-  }
+        # State             Border  BG      Text
+        focused_workspace   $base05 $base0D $base00
+        active_workspace    $base05 $base03 $base00
+        inactive_workspace  $base03 $base01 $base05
+        urgent_workspace    $base08 $base08 $base00
+        binding_mode        $base00 $base0A $base00
+    }
 }
 
-# class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #6272a4 #ffffff #8be9fd   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #999999 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #ff5555 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
-client.background       #ffffff
-
-# GAPS
-# for_window [class="^.*"] border pixel 2
-# gaps inner 10
-# gaps outer 0
-# smart_borders on
-
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-  bindsym o      mode "$mode_gaps_outer"
-  bindsym i      mode "$mode_gaps_inner"
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-
-mode "$mode_gaps_inner" {
-  bindsym plus  gaps inner current plus 5
-  bindsym minus gaps inner current minus 5
-  bindsym 0     gaps inner current set 0
-
-  bindsym Shift+plus  gaps inner all plus 5
-  bindsym Shift+minus gaps inner all minus 5
-  bindsym Shift+0     gaps inner all set 0
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-  bindsym plus  gaps outer current plus 5
-  bindsym minus gaps outer current minus 5
-  bindsym 0     gaps outer current set 0
-
-  bindsym Shift+plus  gaps outer all plus 5
-  bindsym Shift+minus gaps outer all minus 5
-  bindsym Shift+0     gaps outer all set 0
-
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
+# Basic color configuration using the Base16 variables for windows and borders.
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base05 $base0D $base00 $base0D $base0C
+client.focused_inactive $base01 $base01 $base05 $base03 $base01
+client.unfocused        $base01 $base00 $base05 $base01 $base01
+client.urgent           $base08 $base08 $base00 $base08 $base08
+client.placeholder      $base00 $base00 $base05 $base00 $base00
+client.background       $base07

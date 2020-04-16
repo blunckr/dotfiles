@@ -3,16 +3,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'jceb/vim-orgmode'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-user'
 Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 call plug#end()
@@ -92,15 +91,8 @@ set wildmenu
 " prevent auto hard wraps
 set fo-=t
 
-" let g:jellybeans_overrides = {
-" \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
-" \}
-" if has('termguicolors') && &termguicolors
-"     let g:jellybeans_overrides['background']['guibg'] = 'none'
-" endif
-colorscheme base16-default-dark
-" set t_Co=256
-" let base16colorspace=256
+colorscheme base16-irblack
+
 set termguicolors
 " allows transparency
 let g:ale_sign_column_always = 1
@@ -125,6 +117,7 @@ endif
 
 " time whitespace
 command! Trim :%s/\s\+$//e
+command! Gblame :execute("!tig blame % +") . line(".")
 
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 map <Leader>l :w \| !love .<CR>
@@ -134,10 +127,10 @@ map <C-p> :Files<CR>
 map <leader>p :Buffers<CR>
 map <leader>f :ALEFix<CR>
 
-map <Leader>h <C-w>h
-map <Leader>j <C-w>j
-map <Leader>k <C-w>k
-map <Leader>l <C-w>l
+" map <Leader>h <C-w>h
+" map <Leader>j <C-w>j
+" map <Leader>k <C-w>k
+" map <Leader>l <C-w>l
 
 map <Leader>g :!tig status<CR>
 map <Leader>c :!git commit -v<CR>
@@ -147,6 +140,8 @@ map <Leader>t :term<CR>
 abbr jlog console.log
 abbr epry require IEx; IEx.pry
 abbr rpry require 'pry'; binding.pry
+abbr eecho >&2 echo
+abbr pdb import pdb; pdb.set_trace()
 " decamelize
 let @c = "0f_x~@c"
 let @p = "iputs 'vvvvvvvv'puts '^^^^^^^^'€ýaOpp "

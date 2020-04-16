@@ -60,7 +60,9 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions zsh-syntax-highlighting docker)
+plugins=(git zsh-completions zsh-syntax-highlighting docker asdf)
+
+autoload -U compinit && compinit # autocomplete
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,12 +112,6 @@ alias retag="rg --files | ctags -L-"
 # export EDITOR="/usr/local/bin/vim"
 ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 
-if [ -d "$HOME/.asdf" ]
-then
-  . "$HOME/.asdf/asdf.sh"
-  . "$HOME/.asdf/completions/asdf.bash"
-fi
-
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND='rg --files'
 # when you use **
@@ -128,11 +124,10 @@ _fzf_compgen_path() {
 # zle -N edit-command-line
 # bindkey '\033' edit-command-line # esc to edit current line
 
-autoload -U compinit && compinit # autocomplete
-
 # alias cat=bat
 alias sys=systemctl
 
+export TERMINAL=xfce4-terminal
 export EDITOR=vim
 export VISUAL=vim
 
@@ -143,7 +138,3 @@ then
   "$@"
   set --
 fi
-
-# alias ssh="TERM=xterm-256color ssh"
-
-eval $(thefuck --alias f)

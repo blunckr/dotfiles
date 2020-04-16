@@ -1,5 +1,15 @@
 #!/bin/sh
-xrandr --output HDMI-2 --off --output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output eDP-1 --mode 1440x900 --pos 1920x344 --rotate normal --output DP-2 --off
-setxkbmap -option
-xmodmap ~/.mode_switch
-xcape -e 'Mode_switch=Escape'
+xrandr \
+    --output HDMI-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+    --output eDP-1 --mode 1600x900 --pos 1920x90 --rotate normal \
+    --output HDMI-1 --off \
+    --output DP-1 --off \
+    --output DP-2 --off
+
+xmodmap ~/dotfiles/xmodmap
+
+for ws in 10 2 3
+do
+    i3-msg workspace "$ws"
+    i3-msg move workspace to output HDMI-2
+done
