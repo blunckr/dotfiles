@@ -22,6 +22,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec rofi -show run -sidebar-mode
+bindsym $mod+Shift+d exec xfce4-appfinder
 bindsym $mod+Tab exec rofi -show window -show-icons -sidebar-mode
 bindsym $mod+c exec xfce4-popup-clipman
 
@@ -121,7 +122,7 @@ bindsym $mod+Shift+0 move container to workspace number 10
 bindsym $mod+p exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c exec "cat .config/i3/colors .config/i3/base > .config/i3/config && i3-msg reload"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
@@ -154,19 +155,39 @@ bindsym $mod+r mode "resize"
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Arandr"] floating enable
 
-set $mode_launcher [1]lappy [2]ome [3]work [4]mirror [a]udio [d]isplays [q]logout [s]leep [l]ock [p]oweroff
+set $mode_launcher [a]udio [d]isplays s[e]ttings [q]logout [s]leep [l]ock [p]oweroff
 bindsym $mod+semicolon mode "$mode_launcher"
 
 mode "$mode_launcher" {
-  bindsym 1 exec lappy.sh                        ; mode "default"
-  bindsym 2 exec home.sh                         ; mode "default"
-  bindsym 3 exec work.sh                         ; mode "default"
-  bindsym a exec pavucontrol                     ; mode "default"
-  bindsym d exec arandr                          ; mode "default"
+  bindsym e exec xfce4-settings-manager          ; mode "default"
   bindsym l exec xflock4                         ; mode "default"
   bindsym p exec poweroff                        ; mode "default"
   bindsym q exec xfce4-session-logout            ; mode "default"
   bindsym s exec xfce4-session-logout -s         ; mode "default"
+
+  bindsym a mode "$mode_audio"
+  bindsym d mode "$mode_displays"
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+
+set $mode_displays [c]ustom [l]appy [h]ome [w]ork
+mode "$mode_displays" {
+  bindsym c exec arandr                          ; mode "default"
+  bindsym h exec home.sh                         ; mode "default"
+  bindsym l exec lappy.sh                        ; mode "default"
+  bindsym w exec work.sh                         ; mode "default"
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+
+set $mode_audio [c]ustom [h]dmi [l]appy
+mode "$mode_audio" {
+  bindsym c exec pavucontrol                     ; mode "default"
+  bindsym l exec pactl set-card-profile 0 output:analog-stereo+input:analog-stereo; mode "default"
+  bindsym h exec pactl set-card-profile 0 output:hdmi-stereo-extra1; mode "default"
 
   bindsym Escape mode "default"
   bindsym Return mode "default"
@@ -291,28 +312,6 @@ bindsym XF86Display exec --no-startup-id arandr
 exec --no-startup-id temp.sh
 exec --no-startup-id alttab -d 1
 
-
-## Base16 Eighties
-# Author: Chris Kempson (http://chriskempson.com)
-#
-# You can use these variables anywhere in the i3 configuration file.
-
-set $base00 #2d2d2d
-set $base01 #393939
-set $base02 #515151
-set $base03 #747369
-set $base04 #a09f93
-set $base05 #d3d0c8
-set $base06 #e8e6df
-set $base07 #f2f0ec
-set $base08 #f2777a
-set $base09 #f99157
-set $base0A #ffcc66
-set $base0B #99cc99
-set $base0C #66cccc
-set $base0D #6699cc
-set $base0E #cc99cc
-set $base0F #d27b53
 
 # Basic bar configuration using the Base16 variables.
 bar {
