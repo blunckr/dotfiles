@@ -29,17 +29,32 @@ set backspace=2   " Backspace deletes like most programs in insert mode
 set backupdir=~/.vim/tmp//,. " keep backup files out of local dir
 set directory=~/.vim/tmp//,. " keep swap files out of local dir
 set history=2000  " command history
+set tabpagemax=50 " limit max tabs opened by -p or :tab
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set modeline      " read modelines from files
+set autoindent    " preserve indent level in files without indent plugin
+set complete-=i   " don't scan files for autocomplete. uneeded and slow
+set complete+=kspell " use dictionary for completion when spellcheck is on
+set smarttab      " <BS> deletes one tab width
+set nrformats-=octal " <C-a>,<C-x> doesn't effect octal (leading 0s)
+set mouse=nvi     " don't enable mouse in command, as an override option
+
+" don't wait forever on commands if another command shares the prefix
+set ttimeout
+set ttimeoutlen=100
+
+set display+=lastline " don't replace long lines with @@ when not wrapping
+set autoread      " read file again if it has changed
 
 set hlsearch      " highlight search results
 " clear highlights
-map <Leader>s :noh<CR>
+map <Leader>h :noh<CR>
 
-set scrolloff=3   " Context lines above and below cursor
+set scrolloff=3     " Context lines above and below cursor
+set sidescrolloff=5 " Context lines left and right of cursor, nowrap only
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -50,7 +65,8 @@ set expandtab
 inoremap <S-Tab> <C-V><Tab>
 
 " Display extra whitespace
-set list listchars=tab:Â»Â·,trail:Â·,nbsp:Â·
+set list listchars=tab:»·,trail:·,nbsp:·,precedes:«,extends:»
+let &showbreak="\u21aa "
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
@@ -59,21 +75,21 @@ set colorcolumn=+1
 " will insert tab at beginning of line,
 " will use completion if not at beginning
 " set wildmode=list:longest,list:full
-" function! InsertTabWrapper()
-"     let col = col('.') - 1
-"     if !col || getline('.')[col - 1] !~ '\k'
-"         return "\<tab>"
-"     else
-"         return "\<c-p>"
-"     endif
-" endfunction
-" inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 set ignorecase " case insensitive search
 set smartcase " adding a capital letter makes it case sensitive
 set hidden " leave a file with unwritten changes
 set wildmenu
 
-" set formatoptions-=t " prevent auto hard wraps
+set formatoptions-=t " prevent auto hard wraps
 set formatoptions+=j " Delete comment character when joining commented lines
 
 " for gitgutter to update more quickly
@@ -83,21 +99,21 @@ set termguicolors
 colorscheme base16-irblack
 
 let g:ale_sign_column_always = 1
-" let g:ale_set_highlights = 1
+let g:ale_set_highlights = 0
 " let g:ale_completion_enabled = 1
 
 " let g:vifm_term = 'xfce4-terminal -e='
 
 let g:fzf_layout = { 'down': '~30%' }
 
-" if has('gui_running')
+if has('gui_running')
 "   let $FZF_DEFAULT_COMMAND = 'rg --files'
-"   " set guifont=xos4\ Terminus\ Regular\ 14
+  set guifont=Hack\ Regular\ 16
 "   set guicursor+=a:blinkon0
 "   let g:dracula_colorterm = 1
 "   set background=dark
 "   " let g:vifm_embed_term = 1
-" endif
+endif
 
 " time whitespace
 command! Trim :%s/\s\+$//e
@@ -108,6 +124,7 @@ map <Leader>l :w \| !love .<CR>
 map <C-p> :Files<CR>
 map <leader>p :Buffers<CR>
 map <leader>f :ALEFix<CR>
+map <leader>s :setlocal spell!<CR>
 
 " map <Leader>h <C-w>h
 " map <Leader>j <C-w>j
@@ -132,4 +149,4 @@ let @p = "iputs 'vvvvvvvv'puts '^^^^^^^^'€ýaOpp "
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4
 autocmd FileType go setlocal noexpandtab nolist
 autocmd FileType make setlocal noexpandtab nolist
-
+autocmd FileType plaintex setlocal textwidth=70
