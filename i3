@@ -122,7 +122,7 @@ bindsym $mod+Shift+0 move container to workspace number 10
 bindsym $mod+p exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # reload the configuration file
-bindsym $mod+Shift+c exec "cat .config/i3/colors .config/i3/base > .config/i3/config && i3-msg reload"
+bindsym $mod+Shift+c exec "cat ~/.config/i3/colors ~/.config/i3/base > ~/.config/i3/config && i3-msg reload"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
@@ -155,18 +155,17 @@ bindsym $mod+r mode "resize"
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Arandr"] floating enable
 
-set $mode_launcher [a]udio [d]isplays s[e]ttings [q]logout [s]leep [l]ock [p]oweroff
-bindsym $mod+semicolon mode "$mode_launcher"
+set $mode_root [a]udio [c]olor [d]isplays [l]auncher [p]ower [s]ettings
+bindsym $mod+semicolon mode "$mode_root"
 
-mode "$mode_launcher" {
-  bindsym e exec xfce4-settings-manager          ; mode "default"
-  bindsym l exec xflock4                         ; mode "default"
-  bindsym p exec poweroff                        ; mode "default"
-  bindsym q exec xfce4-session-logout            ; mode "default"
-  bindsym s exec xfce4-session-logout -s         ; mode "default"
+mode "$mode_root" {
+  bindsym s exec xfce4-settings-manager          ; mode "default"
 
   bindsym a mode "$mode_audio"
+  bindsym c mode "$mode_color"
   bindsym d mode "$mode_displays"
+  bindsym l mode "$mode_launcher"
+  bindsym p mode "$mode_power"
 
   bindsym Escape mode "default"
   bindsym Return mode "default"
@@ -178,6 +177,20 @@ mode "$mode_displays" {
   bindsym h exec home.sh                         ; mode "default"
   bindsym l exec lappy.sh                        ; mode "default"
   bindsym w exec work.sh                         ; mode "default"
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+
+set $mode_launcher [f]irefox [p]firefox [m]ail [t]hunar [s]lack [v]irt-manager sp[o]tify
+mode "$mode_launcher" {
+  bindsym t exec program-at-path.sh thunar
+  bindsym o exec spotify
+  bindsym f exec firefox
+  bindsym p exec pfire
+  bindsym m exec thunderbird
+  bindsym s exec slack
+  bindsym v exec virt-manager
 
   bindsym Escape mode "default"
   bindsym Return mode "default"
@@ -201,6 +214,17 @@ mode "$mode_color" {
   bindsym j exec --no-startup-id temp.sh down
   bindsym k exec --no-startup-id temp.sh up
   bindsym u exec --no-startup-id temp.sh
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+
+set $mode_power [q]logout [s]leep [l]ock [p]oweroff
+mode "$mode_power" {
+  bindsym l exec xflock4                         ; mode "default"
+  bindsym p exec poweroff                        ; mode "default"
+  bindsym q exec xfce4-session-logout            ; mode "default"
+  bindsym s exec xfce4-session-logout -s         ; mode "default"
 
   bindsym Escape mode "default"
   bindsym Return mode "default"
