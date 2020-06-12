@@ -24,11 +24,13 @@ email = rykerblunck@gmail.com
 [difftool]
 	prompt = false
 [merge]
-	tool = meld
-  ;conflictstyle = diff3
+	tool = vimdiff
+	conflictstyle = diff3
 [mergetool]
 	prompt = false
 [pager]
   diff = diff-so-fancy | less --tabs=1,5 -RFX
   show = diff-so-fancy | less --tabs=1,5 -RFX
 	branch = false
+[pull]
+	rebase = true

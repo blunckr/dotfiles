@@ -1,15 +1,18 @@
 #!/bin/sh
 xrandr \
-    --output HDMI-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-    --output eDP-1 --mode 1600x900 --pos 1920x90 --rotate normal \
-    --output HDMI-1 --off \
-    --output DP-1 --off \
-    --output DP-2 --off
+    --output eDP-1 --off \
+    --output DP-1 --mode 1920x1200 --pos 1920x0 --rotate normal  \
+    --output HDMI-1 --off  \
+    --output DP-2 --off  \
+    --output HDMI-2 --primary --mode 1920x1080 --pos 0x120 --rotate normal
 
 xmodmap ~/dotfiles/xmodmap
 
-for ws in 10 2 3
-do
-    i3-msg workspace "$ws"
-    i3-msg move workspace to output HDMI-2
-done
+i3-msg workspace 1
+i3-msg move workspace to output HDMI-2
+
+i3-msg workspace 2
+i3-msg move workspace to output HDMI-2
+
+i3-msg workspace 3
+i3-msg move workspace to output DP-1

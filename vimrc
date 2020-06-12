@@ -11,6 +11,7 @@ Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
@@ -99,12 +100,17 @@ set termguicolors
 colorscheme base16-irblack
 
 let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 0
+highlight ALEError ctermbg=none cterm=underline
+highlight ALEWarning ctermbg=none cterm=underline
+highlight SpellBad ctermbg=none cterm=underline
+" let g:ale_set_highlights = 1
 " let g:ale_completion_enabled = 1
 
 " let g:vifm_term = 'xfce4-terminal -e='
 
 let g:fzf_layout = { 'down': '~30%' }
+
+command! -nargs=* -range SpeedDatingFormat
 
 if has('gui_running')
 "   let $FZF_DEFAULT_COMMAND = 'rg --files'

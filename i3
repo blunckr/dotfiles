@@ -18,7 +18,7 @@ floating_modifier $mod
 bindsym $mod+Return exec $HOME/bin/program-at-path.sh xfce4-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec rofi -show run -sidebar-mode
@@ -101,11 +101,20 @@ bindsym $mod+Ctrl+h workspace prev
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+l workspace next
 
-bindsym $mod+Ctrl+Shift+Left move container to workspace prev
-bindsym $mod+Ctrl+Shift+h move container to workspace prev
+# bindsym $mod+Ctrl+Shift+Left move container to workspace prev
+# bindsym $mod+Ctrl+Shift+h move container to workspace prev
 
-bindsym $mod+Ctrl+Shift+Right move container to workspace next
-bindsym $mod+Ctrl+Shift+l move container to workspace next
+# bindsym $mod+Ctrl+Shift+Right move container to workspace next
+# bindsym $mod+Ctrl+Shift+l move container to workspace next
+
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+h move workspace to output left
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
+bindsym $mod+Ctrl+Shift+l move workspace to output right
+bindsym $mod+Ctrl+Shift+Up move workspace to output up
+bindsym $mod+Ctrl+Shift+k move workspace to output up
+bindsym $mod+Ctrl+Shift+Down move workspace to output down
+bindsym $mod+Ctrl+Shift+j move workspace to output down
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
@@ -154,6 +163,7 @@ bindsym $mod+r mode "resize"
 
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Arandr"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable
 
 set $mode_root [a]udio [c]olor [d]isplays [l]auncher [p]ower [s]ettings
 bindsym $mod+semicolon mode "$mode_root"
@@ -338,24 +348,24 @@ exec --no-startup-id alttab -d 1
 
 
 # Basic bar configuration using the Base16 variables.
-bar {
-    status_command i3status
-    tray_output primary
-    position top
-
-    colors {
-        background $base00
-        separator  $base01
-        statusline $base04
-
-        # State             Border  BG      Text
-        focused_workspace   $base05 $base0D $base00
-        active_workspace    $base05 $base03 $base00
-        inactive_workspace  $base03 $base01 $base05
-        urgent_workspace    $base08 $base08 $base00
-        binding_mode        $base00 $base0A $base00
-    }
-}
+# bar {
+#     status_command i3status
+#     tray_output primary
+#     position top
+# 
+#     colors {
+#         background $base00
+#         separator  $base01
+#         statusline $base04
+# 
+#         # State             Border  BG      Text
+#         focused_workspace   $base05 $base0D $base00
+#         active_workspace    $base05 $base03 $base00
+#         inactive_workspace  $base03 $base01 $base05
+#         urgent_workspace    $base08 $base08 $base00
+#         binding_mode        $base00 $base0A $base00
+#     }
+# }
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border

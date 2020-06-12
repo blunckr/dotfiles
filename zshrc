@@ -9,7 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="pygmalionx"
+ZSH_THEME=""
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -60,12 +60,22 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions zsh-syntax-highlighting docker asdf)
+plugins=(git zsh-completions zsh-syntax-highlighting docker asdf autojump)
 
-autoload -U compinit && compinit # autocomplete
-
+autoload -U compinit && compinit -u # autocomplete
+# suggest only make targets, not files
+zstyle ':completion:*:*:make:*' tag-order 'targets'
 source $ZSH/oh-my-zsh.sh
 
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
+PROMPT="%(1j.[%j] .)$PROMPT"
+
+# vim mode
+bindkey -v
+# reduce delay entering normal mode
+export KEYTIMEOUT=1
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -126,7 +136,7 @@ _fzf_compgen_path() {
 
 # alias cat=bat
 alias sys=systemctl
-
+alias pg="pg_ctl start -l ~/log/pg.log"
 export TERMINAL=xfce4-terminal
 export EDITOR=vim
 export VISUAL=vim
