@@ -2,14 +2,7 @@
 
 any_players=$(playerctl --list-all | wc -l)
 
-if cmus-remote -C
-then
-    case $1 in
-        prev) cmus-remote -r;;
-        play) cmus-remote -u;;
-        next) cmus-remote -n;;
-    esac
-elif pidof pianobar
+if pidof pianobar
 then
     case $1 in
         play) echo -n 'p' > ~/.config/pianobar/ctl;;
@@ -21,8 +14,19 @@ then
         # prev) playerctl -p spotify previous;;
         # play) playerctl -p spotify play-pause;;
         # next) playerctl -p spotify next;;
-        prev) playerctl previous;;
-        play) playerctl play-pause;;
-        next) playerctl next;;
+        prev) playerctl -p spotify previous;;
+        next) playerctl -p spotify next;;
+        play)
+            if [ "$any_players" == 1 ]
+            then
+                playerctl play-pause
+            elif playerctl status --all-players | grep -q Playing
+            then
+                playerctl pause --all-players
+            else
+                player=$(playerctl -l | rofi -dmenu)
+                playerctl play -p "$player"
+            fi
+            ;;
     esac
 fi

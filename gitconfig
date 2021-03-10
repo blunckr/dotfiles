@@ -34,3 +34,4 @@ email = rykerblunck@gmail.com
 	branch = false
 [pull]
 	rebase = true
+	prune = true

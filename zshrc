@@ -60,7 +60,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions zsh-syntax-highlighting docker asdf autojump)
+plugins=(git zsh-completions zsh-syntax-highlighting docker asdf autojump lxd)
 
 autoload -U compinit && compinit -u # autocomplete
 # suggest only make targets, not files
@@ -73,7 +73,7 @@ prompt pure
 PROMPT="%(1j.[%j] .)$PROMPT"
 
 # vim mode
-bindkey -v
+# bindkey -v
 # reduce delay entering normal mode
 export KEYTIMEOUT=1
 # User configuration
@@ -137,6 +137,7 @@ _fzf_compgen_path() {
 # alias cat=bat
 alias sys=systemctl
 alias pg="pg_ctl start -l ~/log/pg.log"
+alias pri="bundle exec pry -r ./config/environment"
 export TERMINAL=xfce4-terminal
 export EDITOR=vim
 export VISUAL=vim

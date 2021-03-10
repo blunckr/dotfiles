@@ -348,24 +348,24 @@ exec --no-startup-id alttab -d 1
 
 
 # Basic bar configuration using the Base16 variables.
-# bar {
-#     status_command i3status
-#     tray_output primary
-#     position top
-# 
-#     colors {
-#         background $base00
-#         separator  $base01
-#         statusline $base04
-# 
-#         # State             Border  BG      Text
-#         focused_workspace   $base05 $base0D $base00
-#         active_workspace    $base05 $base03 $base00
-#         inactive_workspace  $base03 $base01 $base05
-#         urgent_workspace    $base08 $base08 $base00
-#         binding_mode        $base00 $base0A $base00
-#     }
-# }
+bar {
+    status_command i3status
+    tray_output primary
+    position top
+
+    colors {
+        background $base00
+        separator  $base01
+        statusline $base04
+
+        # State             Border  BG      Text
+        focused_workspace   $base05 $base0D $base00
+        active_workspace    $base05 $base03 $base00
+        inactive_workspace  $base03 $base01 $base05
+        urgent_workspace    $base08 $base08 $base00
+        binding_mode        $base00 $base0A $base00
+    }
+}
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border

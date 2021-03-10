@@ -2,7 +2,8 @@
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'dense-analysis/ale'
 Plug 'jceb/vim-orgmode'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -14,7 +15,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
+Plug 'vifm/vifm.vim'
 call plug#end()
 
 filetype plugin indent on " enable plugins for specific file types
@@ -124,9 +125,9 @@ endif
 " time whitespace
 command! Trim :%s/\s\+$//e
 command! Gblame :execute("!tig blame % +") . line(".")
+command! Hunk :GitGutterPreviewHunk
 
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
-map <Leader>l :w \| !love .<CR>
 map <C-p> :Files<CR>
 map <leader>p :Buffers<CR>
 map <leader>f :ALEFix<CR>
@@ -140,7 +141,6 @@ map <leader>s :setlocal spell!<CR>
 map <Leader>g :!tig status<CR>
 map <Leader>c :!git commit -v<CR>
 map <Leader>i :setlocal foldmethod=indent<CR>
-map <Leader>t :term<CR>
 
 abbr jlog console.log
 abbr epry require IEx; IEx.pry
