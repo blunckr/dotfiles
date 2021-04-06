@@ -101,6 +101,7 @@ set termguicolors
 colorscheme base16-irblack
 
 let g:ale_sign_column_always = 1
+let g:ale_echo_msg_format = '%linter% says %s'
 highlight ALEError ctermbg=none cterm=underline
 highlight ALEWarning ctermbg=none cterm=underline
 highlight SpellBad ctermbg=none cterm=underline
@@ -126,6 +127,7 @@ endif
 command! Trim :%s/\s\+$//e
 command! Gblame :execute("!tig blame % +") . line(".")
 command! Hunk :GitGutterPreviewHunk
+command! Jq %!jq .
 
 " map <Leader>g :w<cr> !ruby rna_transcription_test<cr>
 map <C-p> :Files<CR>

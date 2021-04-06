@@ -60,7 +60,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions zsh-syntax-highlighting docker asdf autojump lxd)
+plugins=(git zsh-completions zsh-syntax-highlighting docker asdf autojump lxd golang)
 
 autoload -U compinit && compinit -u # autocomplete
 # suggest only make targets, not files
@@ -141,6 +141,7 @@ alias pri="bundle exec pry -r ./config/environment"
 export TERMINAL=xfce4-terminal
 export EDITOR=vim
 export VISUAL=vim
+export FLP_PATH=/home/ryker/code/flp
 
 # (cat ~/.cache/wal/sequences &)
 
