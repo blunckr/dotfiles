@@ -2,20 +2,23 @@
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'dense-analysis/ale'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'iberianpig/tig-explorer.vim'
 Plug 'jceb/vim-orgmode'
-Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
+Plug 'mileszs/ack.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'vifm/vifm.vim'
+Plug 'yggdroot/indentLine'
 call plug#end()
 
 filetype plugin indent on " enable plugins for specific file types
@@ -67,7 +70,7 @@ set expandtab
 inoremap <S-Tab> <C-V><Tab>
 
 " Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·,precedes:«,extends:»
+set list listchars=tab:\|\ ,trail:-,nbsp:%,precedes:<,extends:>
 let &showbreak="\u21aa "
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -98,7 +101,9 @@ set formatoptions+=j " Delete comment character when joining commented lines
 set updatetime=100
 
 set termguicolors
-colorscheme base16-irblack
+colorscheme base16-gruvbox-dark-medium
+
+let g:ackprg = 'rg -S --vimgrep --no-heading -g "!*/**/__snapshots__/*"'
 
 let g:ale_sign_column_always = 1
 let g:ale_echo_msg_format = '%linter% says %s'
@@ -125,7 +130,7 @@ endif
 
 " time whitespace
 command! Trim :%s/\s\+$//e
-command! Gblame :execute("!tig blame % +") . line(".")
+" command! Gblame :execute("!tig blame % +") . line(".")
 command! Hunk :GitGutterPreviewHunk
 command! Jq %!jq .
 
@@ -140,10 +145,14 @@ map <leader>s :setlocal spell!<CR>
 " map <Leader>k <C-w>k
 " map <Leader>l <C-w>l
 
-map <Leader>g :!tig status<CR>
+map <Leader>g :TigStatus<CR>
 map <Leader>c :!git commit -v<CR>
 map <Leader>i :setlocal foldmethod=indent<CR>
 
+let g:coc_node_path = '/usr/bin/node'
+map <leader>d :call CocAction('jumpDefinition')<CR>
+nmap <leader>rn <Plug>(coc-rename)
+let g:indentLine_setConceal = 0
 abbr jlog console.log
 abbr epry require IEx; IEx.pry
 abbr rpry require 'pry'; binding.pry
@@ -155,6 +164,6 @@ let @p = "iputs 'vvvvvvvv'puts '^^^^^^^^'€ýaOpp "
 
 " 4 spaces for shell scripts
 autocmd FileType sh setlocal shiftwidth=4 tabstop=4
-autocmd FileType go setlocal noexpandtab nolist
+autocmd FileType go setlocal noexpandtab " list
 autocmd FileType make setlocal noexpandtab nolist
 autocmd FileType plaintex setlocal textwidth=70

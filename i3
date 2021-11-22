@@ -165,11 +165,12 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Xfce4-appfinder"] floating enable
 
-set $mode_root [a]udio [c]olor [d]isplays [l]auncher [p]ower [s]ettings
+set $mode_root [a]udio [c]olor [d]isplays [l]auncher [p]ower [s]ettings [v]pntoggle
 bindsym $mod+semicolon mode "$mode_root"
 
 mode "$mode_root" {
   bindsym s exec xfce4-settings-manager          ; mode "default"
+  bindsym v exec vpn-toggle.sh aws ; mode "default"
 
   bindsym a mode "$mode_audio"
   bindsym c mode "$mode_color"
@@ -206,9 +207,10 @@ mode "$mode_launcher" {
   bindsym Return mode "default"
 }
 
-set $mode_audio [c]ustom [h]dmi [l]appy
+set $mode_audio [c]ustom [e]qualizer [h]dmi [l]appy
 mode "$mode_audio" {
   bindsym c exec pavucontrol                     ; mode "default"
+  bindsym e exec pulseaudio-equalizer-gtk        ; mode "default"
   bindsym l exec pactl set-card-profile 0 output:analog-stereo+input:analog-stereo; mode "default"
   bindsym h exec pactl set-card-profile 0 output:hdmi-stereo-extra1; mode "default"
 

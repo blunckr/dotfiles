@@ -60,7 +60,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions zsh-syntax-highlighting docker asdf autojump lxd golang)
+plugins=(git zsh-completions zsh-syntax-highlighting docker asdf autojump lxd golang aws)
 
 autoload -U compinit && compinit -u # autocomplete
 # suggest only make targets, not files
@@ -124,6 +124,7 @@ ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND='rg --files'
+export KUBECTX_IGNORE_FZF=1
 # when you use **
 _fzf_compgen_path() {
   rg --files
@@ -138,6 +139,8 @@ _fzf_compgen_path() {
 alias sys=systemctl
 alias pg="pg_ctl start -l ~/log/pg.log"
 alias pri="bundle exec pry -r ./config/environment"
+alias kc="kubectl"
+alias tf="terraform"
 export TERMINAL=xfce4-terminal
 export EDITOR=vim
 export VISUAL=vim
