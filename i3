@@ -170,7 +170,7 @@ bindsym $mod+semicolon mode "$mode_root"
 
 mode "$mode_root" {
   bindsym s exec xfce4-settings-manager          ; mode "default"
-  bindsym v exec vpn-toggle.sh aws ; mode "default"
+  bindsym v exec toggle-vpn.sh aws ; mode "default"
 
   bindsym a mode "$mode_audio"
   bindsym c mode "$mode_color"

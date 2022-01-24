@@ -60,7 +60,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions zsh-syntax-highlighting docker asdf autojump lxd golang aws)
+plugins=(git zsh-completions zsh-syntax-highlighting docker asdf autojump lxd golang aws kube-ps1)
 
 autoload -U compinit && compinit -u # autocomplete
 # suggest only make targets, not files
@@ -68,9 +68,11 @@ zstyle ':completion:*:*:make:*' tag-order 'targets'
 source $ZSH/oh-my-zsh.sh
 
 fpath+=$HOME/.zsh/pure
+PURE_GIT_PULL=0
 autoload -U promptinit; promptinit
 prompt pure
 PROMPT="%(1j.[%j] .)$PROMPT"
+PROMPT='$(kube_ps1)'$PROMPT
 
 # vim mode
 # bindkey -v
@@ -107,6 +109,7 @@ export KEYTIMEOUT=1
 # export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.krew/bin:$PATH"
 #
 function precmd {
   echo $(pwd) > /tmp/pwd
@@ -116,11 +119,15 @@ function ssht() {
   ssh $* -t "tmux a -t ssh || tmux new -s ssh"
 }
 
+function kexec {
+  kubectl exec -it "$1" $@ -- /bin/sh
+}
+
 alias retag="rg --files | ctags -L-"
 # alias ssh="TERM=xterm-256color ssh"
 
 # export EDITOR="/usr/local/bin/vim"
-ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
+# ssh-add "$HOME/.ssh/id_rsa" &> /dev/null
 
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND='rg --files'

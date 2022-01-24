@@ -101,7 +101,7 @@ set formatoptions+=j " Delete comment character when joining commented lines
 set updatetime=100
 
 set termguicolors
-colorscheme base16-gruvbox-dark-medium
+colorscheme base16-flat
 
 let g:ackprg = 'rg -S --vimgrep --no-heading -g "!*/**/__snapshots__/*"'
 
