@@ -1,0 +1,121 @@
+#!/bin/bash
+
+function temperature {
+      redshift -P -O "$1" > /dev/null
+}
+
+menu="main"
+
+vpn="aj-aws"
+vpn_status="OFF"
+
+color_default=4500
+color_interval=100
+color_current=$color_default
+
+while true
+do
+  clear
+
+  if [ $menu = main ]
+  then
+    echo "c) Color temperature"
+    echo "d) Displays"
+    echo "v) VPN control"
+    echo "l) lock screen"
+  fi
+
+  if [ $menu = color ]
+  then
+    echo "Current temperature is $color_current"
+    echo "j) Down"
+    echo "k) Up"
+    echo "x) Reset"
+  fi
+
+  if [ $menu = display ]
+  then
+    echo "w) work"
+    echo "h) home"
+    echo "l) lappy"
+  fi
+
+  if [ $menu = vpn ]
+  then
+    echo "STATUS: $vpn_status"
+    echo "u) Up"
+    echo "d) Down"
+  fi
+
+  echo "q) Main menu"
+
+  read -rn1 char
+
+  case "$menu-$char" in
+    "main-c" )
+      menu="color"
+      ;;
+    "main-d" )
+      menu="display"
+      ;;
+    "main-v" )
+      vpn_status=OFF
+      if nmcli c show --active | grep -q "$vpn"
+      then
+        vpn_status=ON
+      fi
+      menu="vpn"
+      ;;
+
+    "main-l" )
+      xflock4
+      ;;
+
+    "color-j" )
+      ((color_current-=color_interval))
+      temperature $color_current
+      ;;
+    "color-k" )
+      ((color_current+=color_interval))
+      temperature $color_current
+      ;;
+    "color-x" )
+      color_current=$color_default
+      temperature $color_current
+      ;;
+
+    "display-w" )
+        xrandr --output eDP-1 --mode 1920x1080 --pos 0x169 --rotate normal --output HDMI-1 --off --output DP-1 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-2 --off
+
+        ;;
+    "display-h" )
+      xrandr \
+        --output HDMI-1 --mode 1920x1200 --pos 1920x0 --rotate right \
+        --output DP-1 --primary --mode 1920x1080 --pos 0x367 --rotate normal \
+        --output eDP-1 --off \
+        --output DP-2 --off
+
+      ;;
+    "display-l" )
+      xrandr \
+        --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+        --output eDP-1 --off \
+        --output HDMI-1 --off \
+        --output DP-1 --off \
+        --output DP-2 --off
+      ;;
+
+    "vpn-u")
+      nmcli connection up $vpn
+      vpn_status=ON
+      ;;
+    "vpn-d")
+      nmcli connection down $vpn
+      vpn_status=OFF
+      ;;
+
+    *-q )
+     menu="main"
+      ;;
+  esac
+done

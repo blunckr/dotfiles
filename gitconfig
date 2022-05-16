@@ -1,0 +1,13 @@
+[user]
+	email = ryker.blunck@atomicjolt.com
+	name = Ryker Blunck
+; [url "git@github.com:"]
+; 	insteadOf = https://github.com/
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status

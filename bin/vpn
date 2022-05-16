@@ -1,0 +1,55 @@
+#!/bin/bash
+# vpn control script.  -petro 12/17/2021
+
+# Split tunnel setup in network manager:
+#  Under IPv4 Settings click the "Routes..." button.
+#     "Ignore automatically obtained routes": checked
+#     "Use this connection only for resources on its network.": checked
+#  Then add any hosts/networks using the 'add' command below.  Only matching IPs will
+#  use openvpn.  The routes added here are also visible in the UI, this is just
+#  an easier interface to use.
+
+set -e
+
+# openvpn name in network manager
+vpn=aj-aws
+
+function get_ips() {
+   if [[ $1 =~ ^[0-9.,/]+$ ]]; then  # For example 10.0.0.1/24,34.34.34.34    (/32 is implied)
+      ips=$1
+   else
+      dig=$(dig +short -4 "$1")
+      ips=$(paste -d, -s <<< "$dig")
+   fi
+   echo "$ips"
+}
+
+case $1 in
+   add)
+      ips=$(get_ips $2)
+      echo "ADDING $ips"
+      nmcli connection modify $vpn +ipv4.routes $ips
+      nmcli connection down $vpn 2>/dev/null && nmcli connection up $vpn
+      ;;
+   remove)
+      ips=$(get_ips $2)
+      echo "REMOVING $ips"
+      nmcli connection modify $vpn -ipv4.routes $ips
+      nmcli connection down $vpn 2>/dev/null && nmcli connection up $vpn
+      ;;
+  list)
+      nmcli connection show $vpn | grep ^ipv4.routes | cut -f2 -d':' | tr -d 'a-z{} =' | tr ';' '\n'
+      ;;
+  up)
+      nmcli connection up $vpn
+      ;;
+  down)
+      nmcli connection down $vpn
+      ;;
+  status)
+      nmcli c show --active | grep -q "$vpn" && echo "VPN UP" || echo "VPN DOWN"
+      ;;
+  *)
+      echo "Usage $0 up|down|list|status|add <dns_name-or-ips>|remove <dns_name-or-ips>"
+      ;;
+esac

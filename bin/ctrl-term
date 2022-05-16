@@ -1,0 +1,2 @@
+#!/bin/sh
+xfce4-terminal -T solaire-ctrl -e /home/ryker/bin/ctrl
