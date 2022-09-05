@@ -74,19 +74,25 @@ let &showbreak="\u21aa "
 set textwidth=80
 set colorcolumn=+1
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-" set wildmode=list:longest,list:full
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+
 set ignorecase " case insensitive search
 set smartcase " adding a capital letter makes it case sensitive
 set hidden " leave a file with unwritten changes
@@ -140,3 +146,14 @@ let @p = "iputs 'vvvvvvvv'puts '^^^^^^^^'€ýaOpp "
 autocmd FileType go setlocal noexpandtab nolist
 autocmd FileType make setlocal noexpandtab nolist
 autocmd FileType plaintex setlocal textwidth=70
+
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 0
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 0
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 0
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1

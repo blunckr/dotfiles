@@ -73,7 +73,7 @@ prompt pure
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf kube-ps1 fzf lxd)
+plugins=(git asdf kube-ps1 fzf lxd autojump)
 
 source $ZSH/oh-my-zsh.sh
 

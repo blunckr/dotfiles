@@ -11,3 +11,4 @@
 	br = branch
 	ci = commit
 	st = status
+	puul = pull --rebase --prune --autostash
